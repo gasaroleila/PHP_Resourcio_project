@@ -10,6 +10,10 @@ class User extends CI_Controller {
         $this->load->view('signup');
     }
 
+    public function collections() {
+        $this->load->view('collections');
+    }
+
 
 }
 
