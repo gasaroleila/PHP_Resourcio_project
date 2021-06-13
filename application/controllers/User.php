@@ -11,6 +11,7 @@ class User extends CI_Controller {
     }
 
     public function collections() {
+        $this->load->helper('form');
         $this->load->view('collections');
     }
 
