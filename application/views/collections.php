@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
@@ -33,7 +33,20 @@
         .container {
             height: 82%;
         }
-
+        a i.fa-user{
+            padding:5px;
+            border-radius:50%;
+            border:1px solid #ddd;
+        }
+        .notifications li:not(:first-of-type){
+            font-size:14px;
+            padding:10px;
+        }
+        .notifications li:last-of-type{
+            padding: 5px;
+            cursor:pointer;
+            color:#524BD7;
+        }
         h4 {
           color: #524bd7;
         }
@@ -74,19 +87,66 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav w-100 d-flex justify-content-around me-auto mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link fw-bold" aria-current="page"  href="#">
+                        <a class="nav-link fw-bold active" aria-current="page"  href="#">
                         <i class="fas fa-home"></i>    Home
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fw-bold active" href="#">
-                        <i class="fas fa-file"></i>     Resources
-                        </a>
+                            <!-- the notifications -->
+                            <div class="dropdown">
+                                <a class="nav-link fw-bold" role="button" id="dropdownMenuLink"
+                                        data-bs-toggle="dropdown" aria-expanded="false" href="#">
+                                    <i class="fas fa-bell"></i>    Notifications
+                                </a>
+
+                                <ul class="dropdown-menu notifications" aria-labelledby="dropdownMenuLink">
+                                    <li class="fw-bold border-bottom pb-2 ps-2">Notifications</li>
+                                    <li class="border-bottom text-nowrap">PHP collection created successfully</li>
+                                    <li class="border-bottom text-nowrap">Resource added successfully</li>
+                                    <li class="text-center">Clear All</li>
+                                </ul>
+                            </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fw-bold" href="#">
-                            <i class="fas fa-bell"></i>    Notifications
-                        </a>
+                            <a class="nav-link fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal1" href="#">
+                                <i class="fas fa-user"></i>    MPeter
+                            </a>
+                            <!-- Update info model -->
+                            <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Update Profile</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="" method="post">
+                                            <div class="mb-3">
+                                                <label for="r_name" class="form-label">Names</label>
+                                                <input type="text" name="resource_name" id="r_name" class="form-control">
+                                            </div>
+                                            <select class="form-select " aria-label="Default select example">
+                                                <option selected>District</option>
+                                                <option value="1">Rwanda</option>
+                                                <option value="2">Kenya</option>
+                                                <option value="3">Burundi</option>
+                                            </select>
+            
+                                            <select class="form-select mb-3 mt-3" aria-label="Default select example">
+                                                <option selected>Sector</option>
+                                                <option value="1">Manager</option>
+                                                <option value="2">Admin</option>
+                                                <option value="3">Instructor</option>
+                                            </select>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                        <input type="submit" class="btn btn-primary" value="Save">
+                                    </div>
+                                            </form>
+                                    </div>
+                                </div>
+                            </div>
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link fw-bold" href="#">
