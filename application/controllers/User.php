@@ -17,6 +17,10 @@ class User extends CI_Controller {
     public function resources() {
         $this->load->view('resources');
     }
+
+    public function landing() {
+        $this->load->view('landing');
+    }
 }
 
 ?>
