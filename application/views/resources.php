@@ -48,6 +48,15 @@
         tr td:last-of-type{
             text-align:center;
         }
+        .notifications li:not(:first-of-type){
+            font-size:14px;
+            padding:10px;
+        }
+        .notifications li:last-of-type{
+            padding: 5px;
+            cursor:pointer;
+            color:#524BD7;
+        }
     </style>
 </head>
 <body>
@@ -71,9 +80,20 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link fw-bold" href="#">
-                                <i class="fas fa-bell"></i>    Notifications
-                            </a>
+                            <!-- the notifications -->
+                            <div class="dropdown">
+                                <a class="nav-link fw-bold" role="button" id="dropdownMenuLink"
+                                        data-bs-toggle="dropdown" aria-expanded="false" href="#">
+                                    <i class="fas fa-bell"></i>    Notifications
+                                </a>
+
+                                <ul class="dropdown-menu notifications" aria-labelledby="dropdownMenuLink">
+                                    <li class="fw-bold border-bottom pb-2 ps-2">Notifications</li>
+                                    <li class="border-bottom text-nowrap">PHP collection created successfully</li>
+                                    <li class="border-bottom text-nowrap">Resource added successfully</li>
+                                    <li class="text-center">Clear All</li>
+                                </ul>
+                        </div>
                         </li>
                         <li class="nav-item ">
                             <a class="nav-link fw-bold" href="#">
