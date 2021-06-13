@@ -15,7 +15,9 @@ class User extends CI_Controller {
         $this->load->view('collections');
     }
 
-
+    public function resources() {
+        $this->load->view('resources');
+    }
 }
 
 ?>
