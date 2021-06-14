@@ -82,7 +82,12 @@
         );
     ?>
     <?php echo form_submit($attr)?>
-
+    <?php 
+    $message=$this->session->flashdata('error');
+    if (isset($message)):?>
+    <?php echo $this->session->flashdata('error');
+     $this->session->unset_userdata('error');?> 
+    <?php endif;?>
     <?php echo form_close();?>
           </form>
         </div>
