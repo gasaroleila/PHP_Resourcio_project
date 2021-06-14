@@ -38,7 +38,7 @@ class User extends CI_Controller {
             $password=hash('SHA512',$this->input->post('Password'));
             $user=$this->User_model->login_user($email,$password); 
             if($user){
-                var_dump($user);
+                // var_dump($user);
                 $session_data=array(
                     'studentId'=>$user[0]->studentId,
                     'studentNames'=>$user[0]->studentNames,
@@ -49,7 +49,7 @@ class User extends CI_Controller {
                 );
                 $this->session->set_userdata($session_data);
                 //You  can access this session using this method $this->session->userdata('username');
-                redirect(base_url().'User/logged_in'); 
+                redirect(base_url().'collection'); 
             }else{
                 $error=array(
                     'error'=>'Incorrect email or password',
@@ -60,9 +60,6 @@ class User extends CI_Controller {
     
         }
 
-    }
-    public function  logged_in(){
-        $this->load->view('collections');
     }
 
     
