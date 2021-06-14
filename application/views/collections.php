@@ -228,27 +228,27 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-          <form action="#" method="post">
+          <form action="<?= site_url('ResourceHandler/addResource')?>" method="post">
            <div class="form-floating mb-3">
-              <input type="text" class="form-control shadow-none" id="floatingInput" placeholder="collection Name" name="collectionName">
+              <input type="text" class="form-control shadow-none" id="floatingInput" placeholder="collection Name" name="resourceName">
               <label for="floatingInput">Resource Name</label>
             </div>
 
             <div class="form-floating mb-3">
-            <textarea class="form-control shadow-none" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+            <textarea class="form-control shadow-none" placeholder="Leave a comment here" id="floatingTextarea" name="resourceDesc"></textarea>
             <label for="floatingTextarea">Description</label>
             </div>
 
             <div class="form-floating mb-3">
-              <input type="text" class="form-control shadow-none" id="floatingInput" placeholder="collection Name" name="collectionName">
+              <input type="text" class="form-control shadow-none" id="floatingInput" placeholder="collection Name" name="resourceLink">
               <label for="floatingInput">Link</label>
             </div>
-
+            
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-primary">Save</button>
+            </div>
             </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary">Save</button>
       </div>
     </div>
     </div>
@@ -304,6 +304,8 @@
 </div>
     </div>
     </div>
+
+    <a href="<?= site_url('ResourceHandler/fetchResource/1')?>" data-bs-toggle="modal" data-bs-target="#triggerNewResource">Fetch Resource</a>
 
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
