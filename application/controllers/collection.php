@@ -14,7 +14,7 @@ class Collection extends CI_Controller{
         $data=[
             'collectionName'=>$name
         ];
-        $this->Collection_model->saveCollection($data);
+        $this->collection_model->saveCollection($data);
         redirect('collection');
     }
 
