@@ -92,11 +92,14 @@ class User extends CI_Controller {
 }
 
 
-  public function user_reset() {
-      $this->load->view('user_reset');
+public function user_reset() {
+    $this->load->view('user_reset');
   }
 
-
+public function logout(){
+    $this->session->sess_destroy();
+    $this->login_view();
+ }
 
 }
 
