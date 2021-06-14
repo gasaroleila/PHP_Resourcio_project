@@ -14,22 +14,21 @@ class Collection extends CI_Controller{
         $data=[
             'collectionName'=>$name
         ];
-        $this->Collection_model->saveCollection($data);
+        $this->collection_model->saveCollection($data);
         redirect('collection');
     }
 
     public function deleteCollection(){
             $id=$this->input->get('id');
-            $this->Collection_model->deleteCollection($id);
+            $this->collection_model->deleteCollection($id);
             redirect('collection');
     }
     public function updateCollection(){
         $id=$this->input->post('id');
         $name=$this->input->post('col_name');
-        if($name != ''){
-            $this->Collection_model->updateCollection($id,$name);
-            redirect('collection');
-        }
+        $this->collection_model->updateCollection($id,$name);
+        redirect('collection');
+        
 
     }
 

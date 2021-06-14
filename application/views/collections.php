@@ -1,3 +1,12 @@
+<?php 
+
+if(!$this->session->userdata('username')){
+    site_url('user/');
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,16 +68,6 @@
             height: 35%!important;
             width: 24% !important;
         }
-       
-        /* .collection:nth-of-type(2n){
-            background-color:#E7B93C;
-        }
-        .collection:nth-of-type(2n+1){
-            background-color:#54AE78;
-        }
-        .collection:nth-of-type(n+1){
-            background-color:#524BD7;
-        } */
         .collection-1 {
             background-color: #524BD7
         }
@@ -119,7 +118,7 @@
                     </li>
                     <li class="nav-item">
                             <a class="nav-link fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal1" href="#">
-                                <i class="fas fa-user"></i>    MPeter
+                                <i class="fas fa-user"></i> <?php echo $this->session->userdata('username') ?>
                             </a>
                             <!-- Update info model -->
                             <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
@@ -185,8 +184,13 @@
         <hr>
         <div class="collection-group col-12 h-100 d-flex flex-wrap justify-content-left">
         <?php 
+            $i=1;
+            if(count($colls_data)==0){ ?>
+                <p class="fw-bold">You have no collections yet.</p>
+            <?php }else{
             foreach ($colls_data as $coll_data) {
-                $i=1;
+                if($i>3)
+                    $i=1;
                 ?>
                     <div class="collection collection-<?php echo $i?> h-25 rounded-2 mx-1">
                         <h1 class="text-light px-2 fs-1">8<span class="float-end px-3">
@@ -195,7 +199,7 @@
                             <path id="Icon_awesome-ellipsis-v" data-name="Icon awesome-ellipsis-v" d="M4.353,13.466a2.79,2.79,0,0,0,2.665-2.9,2.79,2.79,0,0,0-2.665-2.9,2.79,2.79,0,0,0-2.665,2.9A2.79,2.79,0,0,0,4.353,13.466ZM1.688,17.659a2.79,2.79,0,0,1,2.665-2.9,2.79,2.79,0,0,1,2.665,2.9,2.79,2.79,0,0,1-2.665,2.9A2.79,2.79,0,0,1,1.688,17.659Zm0-14.194A2.79,2.79,0,0,1,4.353.563a2.79,2.79,0,0,1,2.665,2.9,2.79,2.79,0,0,1-2.665,2.9A2.79,2.79,0,0,1,1.688,3.466Z" transform="translate(-1.688 -0.563)" fill="#fff"/>
                         </svg>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" href="#">Rename</a></li>
+                            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#staticBackdrop<?php echo $i?>" href="#">Rename</a></li>
                             <li>
                             <a class="dropdown-item" href="collection/deleteCollection?id=<?php echo $coll_data->collectionId?>">Delete</a>
                             </li>
@@ -209,16 +213,35 @@
                     <hr class="col-10 mx-auto bg-white">
                     <a href="<?= site_url('ResourceHandler/fetchResources/').$coll_data->collectionId?>" class="text-light float-end px-4 py-4">View All</a>
                 </div>
+                <!-- Update collection modal -->
+                <div class="modal fade" id="staticBackdrop<?php echo $i?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Rename Collection</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action=<?php echo base_url("collection/updateCollection") ?> method="post">
+                            <div class="form-floating mb-3">
+                            <input type="text" name="col_name" class="form-control shadow-none" id="floatingInput" value=<?php echo $coll_data->collectionName ?> name="collectionName">
+                            <input type="text" name="id" hidden value=<?php echo $coll_data->collectionId?>>
+                            <label for="floatingInput">New name</label>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                        <input type="submit" class="btn btn-primary" value="Save">
+                        </form>
+                    </div>
+                    </div>
+                </div>
+                </div>
         <?php 
             $i++; }
+                }
         ?>
         </div>
-
-   <!-- <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-    <li><a class="dropdown-item" href="#">Action</a></li>
-    <li><a class="dropdown-item" href="#">Another action</a></li>
-    <li><a class="dropdown-item" href="#">Something else here</a></li>
-  </ul> -->
 
   <div class="modal fade" id="triggerNewResource" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="triggerNewResourceLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -268,30 +291,6 @@
               <input type="text" name="col_name" class="form-control shadow-none" id="floatingInput" placeholder="collection Name" name="collectionName">
               <label for="floatingInput">Collection Name</label>
               <small><?php echo form_error('col_name') ?></small>
-            </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-        <input type="submit" class="btn btn-primary" value="Save">
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Update collection modal -->
-<div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Rename Collection</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-          <form action=<?php echo base_url("collection/updateCollection") ?> method="post">
-             <div class="form-floating mb-3">
-              <input type="text" name="col_name" class="form-control shadow-none" id="floatingInput" value=<?php echo $coll_data->collectionName ?> name="collectionName">
-              <input type="text" name="id" hidden value=<?php echo $coll_data->collectionId?>>
-              <label for="floatingInput">New name</label>
             </div>
       </div>
       <div class="modal-footer">

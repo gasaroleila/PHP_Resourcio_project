@@ -15,8 +15,9 @@ class User extends CI_Controller {
     public function login_view(){
         $this->load->view('user/login');
     }
-
-
+    public function landing_page(){
+        $this->load->view('landing');
+    }
     public function login() {
        $this->form_validation->set_rules('email','Email',
        'trim|required|valid_email', 
@@ -48,7 +49,7 @@ class User extends CI_Controller {
                 );
                 $this->session->set_userdata($session_data);
                 //You  can access this session using this method $this->session->userdata('username');
-                redirect(base_url().'User/logged_in'); 
+                redirect(base_url().'collection'); 
             }else{
                 $error=array(
                     'error'=>'Incorrect email or password',
@@ -59,9 +60,6 @@ class User extends CI_Controller {
     
         }
 
-    }
-    public function  logged_in(){
-        $this->load->view('collections');
     }
 
     
