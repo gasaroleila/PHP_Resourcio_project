@@ -62,6 +62,14 @@
             cursor:pointer;
             color:#524BD7;
         }
+
+        .desc {
+            height: 150px
+        }
+
+        a {
+            color: #524bd7; 
+        }
     </style>
 </head>
 <body>
@@ -147,7 +155,12 @@
     </nav>
     <div class="container col-9 shadow mt-5">
         <div class="header d-flex justify-content-between">
-            <h4 class="p-3"><span> <i class="fas fa-folder-open"></i> </span>Resources</h4>
+             <?php
+                $collectionId = $parentId['collectionId'];
+                $this->db->select('*');
+                $collectionData = $this->db->get_where('collection',array('collectionId'=>$collectionId))->result_array();
+             ?>
+            <h4 class="p-3"><span> <i class="fas fa-folder-open"></i> </span><a href="<?= site_url('User/collections')?>">Collections/</a><a href="#"><?= $collectionData[0]['collectionName']?> </a>Resources</h4>
             <span class="p-4">
                 <svg data-bs-toggle="modal" data-bs-target="#exampleModal" xmlns="http://www.w3.org/2000/svg" width="27" height="33" viewBox="0 0 27 33">
                 <g id="Icon_feather-file-plus" data-name="Icon feather-file-plus" transform="translate(-4.5 -1.5)">
@@ -167,18 +180,24 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="" method="post">
-                            <div class="mb-3">
+                        <?php 
+                        if(isset($resource)) {
+                        $collectionId = $resources[0]['collectionId'];
+                        }
+                        ?>
+                    <form action="<?= site_url('ResourceHandler/addResource/').$collectionId?>" method="post">
+
+                       <div class="mb-3">
                                 <label for="r_name" class="form-label">Resource name</label>
-                                <input type="text" name="resource_name" id="r_name" class="form-control">
+                                <input type="text" name="resourceName" id="r_name" class="form-control">
                             </div>
                             <div class="mb-3">
                                 <label for="r_desc" class="form-label">Description</label>
-                                <textarea name="description" id="r_desc" class="form-control" rows="3"></textarea>
+                                <input type="text" name="resourceDescription" id="r_desc" class="form-control desc" ></input>
                             </div>
                             <div class="mb-3">
                                 <label for="r_link" class="form-label">Link</label>
-                                <input type="text" name="link" id="r_link" class="form-control">
+                                <input type="text" name="resourceLink" id="r_link" class="form-control">
                             </div>
                     </div>
                     <div class="modal-footer">
@@ -206,54 +225,29 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php 
+                     
+                    foreach($resources as $resource) {
+                    ?>
                     <tr>
-                        <td>Angular Exercise</td>
-                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</td>
-                        <td><a href="https://angular.io/">https://angular.io/</a></td>
+                        <td><?= $resource['resourceName']?></td>
+                        <td><?=  $resource['description']?></td>
+                        <td><a href="<?= $resource['link']?>"><?= $resource['link']?></a></td>
                         <td>    
                             <div class="btn-group dropstart">
                                 <a type="button" class="btn" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fas fa-ellipsis-v"></i>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#"> <i class="fas fa-trash text-danger"></i> Delete</a></li>
-                                    <li><a class="dropdown-item" href="#"> <i class="fas fa-pen text-primary"></i> Edit</a></li>
+                                    <li><a class="dropdown-item" href="<?= site_url("ResourceHandler/editResource/").$resource['resourceId']?>"> <i class="fas fa-pen text-primary"></i> Edit</a></li>
+                                    <li><a class="dropdown-item" href="<?= site_url("ResourceHandler/deleteResource/").$resource['resourceId']?>"> <i class="fas fa-trash text-danger"></i> Delete</a></li>
                                 </ul>
                             </div>
                         </td>
                     </tr>
-                    <tr>
-                        <td>CodeIgniter notes</td>
-                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore lorem ipsum dolor sit amet, consectetur.</td>
-                        <td><a href="https://angular.io/">http://localhost/PHP_Resourcio_project/user/resources</a></td>
-                        <td>    
-                            <div class="btn-group dropstart">
-                                <a type="button" class="btn" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#"> <i class="fas fa-trash text-danger"></i> Delete</a></li>
-                                    <li><a class="dropdown-item" href="#"> <i class="fas fa-pen text-primary"></i> Edit</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>JS revision</td>
-                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</td>
-                        <td><a href="https://angular.io/">https://angular.io/</a></td>
-                        <td>    
-                            <div class="btn-group dropstart">
-                                <a type="button" class="btn" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#"> <i class="fas fa-trash text-danger"></i> Delete</a></li>
-                                    <li><a class="dropdown-item" href="#"> <i class="fas fa-pen text-primary"></i> Edit</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
+
+                    <?php  }?>
+                    
                 </tbody>
             </table>
         </div>

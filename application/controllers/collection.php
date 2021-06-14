@@ -2,7 +2,7 @@
 
 class Collection extends CI_Controller{
     public function index() {
-        $data['colls_data']=$this->Collection_model->getCollections();
+        $data['colls_data']=$this->collection_model->getCollections();
         $this->load->view('collections',$data);
     }
 
@@ -20,14 +20,14 @@ class Collection extends CI_Controller{
 
     public function deleteCollection(){
             $id=$this->input->get('id');
-            $this->Collection_model->deleteCollection($id);
+            $this->collection_model->deleteCollection($id);
             redirect('collection');
     }
     public function updateCollection(){
         $id=$this->input->post('id');
         $name=$this->input->post('col_name');
         if($name != ''){
-            $this->Collection_model->updateCollection($id,$name);
+            $this->collection_model->updateCollection($id,$name);
             redirect('collection');
         }
 
