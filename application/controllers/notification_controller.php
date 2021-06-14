@@ -1,12 +1,14 @@
 <?php
     class Notification_controller extends CI_controller{
 
-        function display(){
-            $result = $this->notification_model->get_Notifications();
-
-            foreach ($result as $object){
-                echo $object->username."<br>";
-            }
+        public function display() {
+            $data['notification_data']=$this->notification_model->get_notifications();
+            $this->load->view('collections',$data);
+        }
+        function clearAll(){
+                $id=$this->input->get('id');
+                $this->collection_model->deleteAllNotitifactions($id);
+                redirect('collection');
         }
 
     }

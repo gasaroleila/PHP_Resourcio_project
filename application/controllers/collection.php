@@ -23,14 +23,12 @@ class Collection extends CI_Controller{
             $this->collection_model->deleteCollection($id);
             redirect('collection');
     }
-    public function updateCollection(){
-        $id=$this->input->post('id');
+    public function updateCollection($id){
         $name=$this->input->post('col_name');
         if($name != ''){
             $this->collection_model->updateCollection($id,$name);
             redirect('collection');
         }
-
     }
 
 

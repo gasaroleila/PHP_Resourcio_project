@@ -108,12 +108,10 @@
                                         data-bs-toggle="dropdown" aria-expanded="false" href="#">
                                     <i class="fas fa-bell"></i>    Notifications
                                 </a>
-
                                 <ul class="dropdown-menu notifications" aria-labelledby="dropdownMenuLink">
                                     <li class="fw-bold border-bottom pb-2 ps-2">Notifications</li>
-                                    <li class="border-bottom text-nowrap">PHP collection created successfully</li>
-                                    <li class="border-bottom text-nowrap">Resource added successfully</li>
-                                    <li class="text-center">Clear All</li>
+                                    <li class="border-bottom text-nowrap"></li>
+                                    <li class="text-center"><a href=""></a> Clear All</li>
                                 </ul>
                             </div>
                     </li>
@@ -195,7 +193,7 @@
                             <path id="Icon_awesome-ellipsis-v" data-name="Icon awesome-ellipsis-v" d="M4.353,13.466a2.79,2.79,0,0,0,2.665-2.9,2.79,2.79,0,0,0-2.665-2.9,2.79,2.79,0,0,0-2.665,2.9A2.79,2.79,0,0,0,4.353,13.466ZM1.688,17.659a2.79,2.79,0,0,1,2.665-2.9,2.79,2.79,0,0,1,2.665,2.9,2.79,2.79,0,0,1-2.665,2.9A2.79,2.79,0,0,1,1.688,17.659Zm0-14.194A2.79,2.79,0,0,1,4.353.563a2.79,2.79,0,0,1,2.665,2.9,2.79,2.79,0,0,1-2.665,2.9A2.79,2.79,0,0,1,1.688,3.466Z" transform="translate(-1.688 -0.563)" fill="#fff"/>
                         </svg>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" href="#">Rename</a></li>
+                            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" href="collection/updateCollection?id=<?php echo $coll_data->collectionId?>">Rename</a></li>
                             <li>
                             <a class="dropdown-item" href="collection/deleteCollection?id=<?php echo $coll_data->collectionId?>">Delete</a>
                             </li>
@@ -205,9 +203,33 @@
                         </span>
                         </h1>
 
-                <p class="text-light fs-5  col-10 mx-auto mt-4"><span class="fw-bold me-1"><?php echo $coll_data->collectionName ?></span>resources</p>
+                <p class="text-light fs-5  col-10 mx-auto mt-4"><span class="fw-bold me-1"><?php echo $coll_data->collectionName?></span>resources</p>
                     <hr class="col-10 mx-auto bg-white">
-                    <a href="#" class="text-light float-end px-4 py-4">View All</a>
+                    <a href="<?= site_url('ResourceHandler/fetchResources/').$coll_data->collectionId?>" class="text-light float-end px-4 py-4">View All</a>
+                </div>
+                <!-- Update collection modal -->
+                <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Rename Collection</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action=<?php echo base_url("collection/updateCollection/"). $coll_data->collectionId ?> method="post">
+                            <div class="form-floating mb-3">
+                            <input type="text" name="col_name" class="form-control shadow-none" id="floatingInput" value=<?php echo $coll_data->collectionName ?> name="collectionName">
+                            <input type="text" name="id" hidden value=<?php echo $coll_data->collectionId?>>
+                            <label for="floatingInput">New name</label>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                        <input type="submit" class="btn btn-primary" value="Save">
+                        </form>
+                    </div>
+                    </div>
+                </div>
                 </div>
         <?php 
             $i++; }
@@ -278,30 +300,7 @@
     </div>
   </div>
 </div>
-<!-- Update collection modal -->
-<div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Rename Collection</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-          <form action=<?php echo base_url("collection/updateCollection") ?> method="post">
-             <div class="form-floating mb-3">
-              <input type="text" name="col_name" class="form-control shadow-none" id="floatingInput" value=<?php echo $coll_data->collectionName ?> name="collectionName">
-              <input type="text" name="id" hidden value=<?php echo $coll_data->collectionId?>>
-              <label for="floatingInput">New name</label>
-            </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-        <input type="submit" class="btn btn-primary" value="Save">
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
+
     </div>
     </div>
 
