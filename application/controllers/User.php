@@ -2,6 +2,12 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class User extends CI_Controller {
+
+    public function __construct() {
+        parent::__construct();
+        $this->load->helper('form');
+    }
+
     public function index() {
         $locations["locations"] = $this->User_model->registration();
         $this->load->view('user/signup',$locations);
@@ -9,6 +15,8 @@ class User extends CI_Controller {
     public function login_view(){
         $this->load->view('user/login');
     }
+
+
     public function login() {
        $this->form_validation->set_rules('email','Email',
        'trim|required|valid_email', 
@@ -77,6 +85,13 @@ class User extends CI_Controller {
         }
        
 }
+
+
+  public function user_reset() {
+      $this->load->view('user_reset');
+  }
+
+
 
 }
 
