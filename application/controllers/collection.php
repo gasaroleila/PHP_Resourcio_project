@@ -26,10 +26,9 @@ class Collection extends CI_Controller{
     public function updateCollection(){
         $id=$this->input->post('id');
         $name=$this->input->post('col_name');
-        if($name != ''){
-            $this->Collection_model->updateCollection($id,$name);
-            redirect('collection');
-        }
+        $this->Collection_model->updateCollection($id,$name);
+        redirect('collection');
+        
 
     }
 
