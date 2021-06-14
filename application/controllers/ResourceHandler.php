@@ -25,7 +25,6 @@ class ResourceHandler extends CI_Controller {
 
 	public function addResource($collectionId)
 	{
-       $this->load->library('form_validation');
 	   $this->form_validation->set_rules('resourceName','Resource_name','trim|required|min_length[2]|alpha_numeric');
 	   $this->form_validation->set_rules('resourceDescription','Resource Description','trim|required|alpha_numeric_spaces|min_length[2]');
 	   $this->form_validation->set_rules('resourceLink','Resource Link','trim|required|valid_url');

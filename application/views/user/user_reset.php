@@ -41,7 +41,7 @@
 </head>
 <body class="d-flex justify-content-center">
 <div class="container bg-white rounded p-4 shadow-lg col-lg-5 col-xl-4 col-md-6 col-sm-7 col-9">
-        <h3 class="fw-bold mb-3">Log In</h3>
+        <h3 class="fw-bold mb-3">Reset Password</h3>
 
     <?php $attributes=array('class'=>'mt-auto');?>
     <?php echo "<p class='errors'>".validation_errors()."</p>"?>

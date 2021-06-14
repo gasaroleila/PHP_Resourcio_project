@@ -15,6 +15,8 @@ class User extends CI_Controller {
     public function login_view(){
         $this->load->view('user/login');
     }
+
+
     public function login() {
        $this->form_validation->set_rules('email','Email',
        'trim|required|valid_email', 
@@ -64,6 +66,13 @@ class User extends CI_Controller {
         }
        
 }
+
+
+  public function user_reset() {
+      $this->load->view('user_reset');
+  }
+
+
 
 }
 

@@ -2,7 +2,7 @@
 
 class Collection extends CI_Controller{
     public function index() {
-        $data['colls_data']=$this->Collection_model->getCollections();
+        $data['colls_data']=$this->collection_model->getCollections();
         $this->load->view('collections',$data);
     }
 

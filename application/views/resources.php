@@ -160,7 +160,7 @@
                 $this->db->select('*');
                 $collectionData = $this->db->get_where('collection',array('collectionId'=>$collectionId))->result_array();
              ?>
-            <h4 class="p-3"><span> <i class="fas fa-folder-open"></i> </span><a href="<?= site_url('User/collections')?>">Collections/</a><a href="#"><?= $collectionData[0]['collectionName']?> </a>Resources</h4>
+            <h4 class="p-3"><span> <i class="fas fa-folder-open"></i> </span><a href="<?= site_url('collection')?>">Collections/</a><a href="#"><?= $collectionData[0]['collectionName']?> </a>Resources</h4>
             <span class="p-4">
                 <svg data-bs-toggle="modal" data-bs-target="#exampleModal" xmlns="http://www.w3.org/2000/svg" width="27" height="33" viewBox="0 0 27 33">
                 <g id="Icon_feather-file-plus" data-name="Icon feather-file-plus" transform="translate(-4.5 -1.5)">
