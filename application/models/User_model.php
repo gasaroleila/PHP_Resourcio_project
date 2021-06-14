@@ -6,9 +6,9 @@ class User_model extends CI_model{
        $this->db->where('password',$password);
        $result = $this->db->get('student');
        if($result->num_rows()>0){
-           echo "logged in";
+           return true;
        }else{
-           return "Failed";
+           return false;
        }
     }
     public function registration(){
@@ -18,6 +18,7 @@ class User_model extends CI_model{
     
     public function insertUser($data){
         $this->db->insert('student', $data);
+        return true;
     }
 }
 ?>
