@@ -56,3 +56,4 @@ $route['register']['GET'] = 'User';
 $route['register']['POST']='User/register';
 $route['login']['GET'] = 'User/login_view';
 $route['login']['POST']='User/login';
+$route['collection']['POST']='collection/addCollection';
