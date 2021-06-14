@@ -2,8 +2,8 @@
 
     class Notification_model extends CI_model{
 
-        public function get_notifications($id){
-            $query = $this->db->get("select from notifications where studentId = $id");
+        public function get_notifications($userId){
+            $query = $this->db->query("select * from notifications where studentId = $userId");   
             return $query->result();
         }
 

@@ -1,13 +1,16 @@
 <?php
     class Notification_controller extends CI_controller{
 
-        public function display() {
-            $data['notification_data']=$this->notification_model->get_notifications();
+        
+        public function displayNotifications() {
+            $userId = $this->session->userdata('studentId');
+            $data['notification']=$this->notification_model->get_notifications($userId);
             $this->load->view('collections',$data);
         }
+
         function clearAll(){
-                $id=$this->input->get('id');
-                $this->collection_model->deleteAllNotitifactions($id);
+                $userId = $this->session->userdata('studentId');
+                $this->notification_model->deleteAllNotitifactions($userId);
                 redirect('collection');
         }
 

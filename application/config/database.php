@@ -77,13 +77,8 @@ $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
 	'username' => 'root',
-<<<<<<< HEAD
 	'password' => '',
 	'database' => 'resourcio',
-=======
-	'password' => 'real0987',
-	'database' => 'student_notes',
->>>>>>> c1811c58a522284b8372389dc1b82a9ede2d5dcd
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

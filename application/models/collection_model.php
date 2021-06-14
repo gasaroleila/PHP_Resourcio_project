@@ -5,8 +5,9 @@ class Collection_model extends CI_Model{
 
     public function saveCollection($data){
         $sql = $this->db->insert('collection', $data);
+        $userId = $this->session->userdata('studentId');
         if($sql){
-            $mysql->query("insert into notifications (title) values ('collection inserted successfully')");
+            $this->db->query("insert into notifications (title,studentId) values ('collection inserted successfully', '$userId')");
         }
     }
     public function getCollections(){
@@ -16,13 +17,13 @@ class Collection_model extends CI_Model{
     public function deleteCollection($id){
         $sql = $this->db->query("delete from collection where collectionId = $id");
         if($sql){
-            $mysql->query("insert into notifications (title) values ('Deletion succeeded')");
+            $this->db->query("insert into notifications (title) values ('Deletion succeeded')");
         }
     }
     public function updateCollection($id, $name){
         $sql = $this->db->query("update collection set collectionName = '$name' where collectionId = $id");
         if($sql){
-            $mysql->query("insert into notifications (title) values ('Succeeded updating')");
+            $this->db->query("insert into notifications (title) values ('Succeeded updating')");
         }
     }
 }

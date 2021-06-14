@@ -83,7 +83,7 @@
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul class="navbar-nav w-100 d-flex justify-content-around me-auto mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link fw-bold active" aria-current="page"  href="#">
+                            <a class="nav-link fw-bold active" aria-current="page"  href=<?php echo site_url('collection')?>>
                             <i class="fas fa-home"></i>    Home
                             </a>
                         </li>
