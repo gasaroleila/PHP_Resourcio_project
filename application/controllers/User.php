@@ -36,7 +36,7 @@ class User extends CI_Controller {
     public function register() {
     
         $this->form_validation->set_rules('names', 'Names', 'trim|required|min_length[4]|max_length[40]');
-        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|is_unique[student.email]|valid_email',array('is_unique' =>"Email Already taken"));
         $this->form_validation->set_rules('username', 'User Name', 'trim|required|min_length[2]|max_length[15]|is_unique[student.username]',
          array('is_unique' =>"Username Already taken")
         );
