@@ -42,6 +42,7 @@
 </head>
 
 <body class="d-flex justify-content-center">
+    
 <div class="container  h-75 bg-white rounded p-4 shadow-lg col-lg-5 col-xl-4 col-md-6 col-sm-7 col-9">
         <h3 class="fw-bold mb-3">Edit Resource</h3>
     
@@ -62,6 +63,7 @@
                     
                       <div class="mt-5">
                         <input type="submit" class="btn btn-primary" value="Save">
+                        <a href="<?= site_url('ResourceHandler/fetchResources/').$resource[0]['collectionId']?>" class="btn btn-danger">Cancel</a>
                         </div>
                         </form>
         </div>

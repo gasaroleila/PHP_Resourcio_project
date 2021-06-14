@@ -16,6 +16,11 @@ class User extends CI_Controller {
         $this->load->view('user/login');
     }
 
+    public function update_profile($id,$name) {
+        $this->User_model->update_profile($id,$name);
+        $this->load->view('collections');
+    }
+
 
     public function login() {
        $this->form_validation->set_rules('email','Email',

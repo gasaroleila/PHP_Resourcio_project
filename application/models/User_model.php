@@ -19,5 +19,15 @@ class User_model extends CI_model{
     public function insertUser($data){
         $this->db->insert('student', $data);
     }
+
+    public function update_profile($id,$name) {
+        $this->db->set('studentName',$name);
+        $this->db->where('studentId', $id);
+        if($this->db->update('student')) {
+            return true;
+        }else {
+            return false;
+        }
+    }
 }
 ?>
