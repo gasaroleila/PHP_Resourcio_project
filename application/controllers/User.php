@@ -35,12 +35,19 @@ class User extends CI_Controller {
         {
             $email=$this->input->post('email');
             $password=hash('SHA512',$this->input->post('Password'));
-
-            if($this->User_model->login_user($email,$password)){
-               $session_data=array(
-                   'email'=>$email,
-               );
-               $this->session->set_userdata($session_data);
+            $user=$this->User_model->login_user($email,$password); 
+            if($user){
+                var_dump($user);
+                $session_data=array(
+                    'studentId'=>$user[0]->studentId,
+                    'studentNames'=>$user[0]->studentNames,
+                    'email'=>$user[0]->email,
+                    'districtId'=>$user[0]->districtId,
+                    'sectorId'=>$user[0]->sectorId,
+                    'username'=>$user[0]->username,
+                );
+                $this->session->set_userdata($session_data);
+                //You  can access this session using this method $this->session->userdata('username');
                 redirect(base_url().'User/logged_in'); 
             }else{
                 $error=array(

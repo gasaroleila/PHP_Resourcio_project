@@ -6,7 +6,7 @@ class User_model extends CI_model{
        $this->db->where('password',$password);
        $result = $this->db->get('student');
        if($result->num_rows()>0){
-           return true;
+           return $result->result();
        }else{
            return false;
        }
