@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
@@ -33,7 +33,20 @@
         .container {
             height: 82%;
         }
-
+        a i.fa-user{
+            padding:5px;
+            border-radius:50%;
+            border:1px solid #ddd;
+        }
+        .notifications li:not(:first-of-type){
+            font-size:14px;
+            padding:10px;
+        }
+        .notifications li:last-of-type{
+            padding: 5px;
+            cursor:pointer;
+            color:#524BD7;
+        }
         h4 {
           color: #524bd7;
         }
@@ -43,9 +56,19 @@
         }
 
         .collection {
-            height: 35%!important
+            height: 35%!important;
+            width: 24% !important;
         }
-
+       
+        /* .collection:nth-of-type(2n){
+            background-color:#E7B93C;
+        }
+        .collection:nth-of-type(2n+1){
+            background-color:#54AE78;
+        }
+        .collection:nth-of-type(n+1){
+            background-color:#524BD7;
+        } */
         .collection-1 {
             background-color: #524BD7
         }
@@ -74,19 +97,66 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav w-100 d-flex justify-content-around me-auto mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link fw-bold" aria-current="page"  href="#">
+                        <a class="nav-link fw-bold active" aria-current="page"  href="#">
                         <i class="fas fa-home"></i>    Home
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fw-bold active" href="#">
-                        <i class="fas fa-file"></i>     Resources
-                        </a>
+                            <!-- the notifications -->
+                            <div class="dropdown">
+                                <a class="nav-link fw-bold" role="button" id="dropdownMenuLink"
+                                        data-bs-toggle="dropdown" aria-expanded="false" href="#">
+                                    <i class="fas fa-bell"></i>    Notifications
+                                </a>
+
+                                <ul class="dropdown-menu notifications" aria-labelledby="dropdownMenuLink">
+                                    <li class="fw-bold border-bottom pb-2 ps-2">Notifications</li>
+                                    <li class="border-bottom text-nowrap">PHP collection created successfully</li>
+                                    <li class="border-bottom text-nowrap">Resource added successfully</li>
+                                    <li class="text-center">Clear All</li>
+                                </ul>
+                            </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fw-bold" href="#">
-                            <i class="fas fa-bell"></i>    Notifications
-                        </a>
+                            <a class="nav-link fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal1" href="#">
+                                <i class="fas fa-user"></i>    MPeter
+                            </a>
+                            <!-- Update info model -->
+                            <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Update Profile</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="" method="post">
+                                            <div class="mb-3">
+                                                <label for="r_name" class="form-label">Names</label>
+                                                <input type="text" name="resource_name" id="r_name" class="form-control">
+                                            </div>
+                                            <select class="form-select " aria-label="Default select example">
+                                                <option selected>District</option>
+                                                <option value="1">Rwanda</option>
+                                                <option value="2">Kenya</option>
+                                                <option value="3">Burundi</option>
+                                            </select>
+            
+                                            <select class="form-select mb-3 mt-3" aria-label="Default select example">
+                                                <option selected>Sector</option>
+                                                <option value="1">Manager</option>
+                                                <option value="2">Admin</option>
+                                                <option value="3">Instructor</option>
+                                            </select>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                        <input type="submit" class="btn btn-primary" value="Save">
+                                    </div>
+                                            </form>
+                                    </div>
+                                </div>
+                            </div>
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link fw-bold" href="#">
@@ -113,92 +183,42 @@
         </div>
 
         <hr>
+        <div class="collection-group col-12 h-100 d-flex flex-wrap justify-content-left">
+        <?php 
+            foreach ($colls_data as $coll_data) {
+                $i=1;
+                ?>
+                    <div class="collection collection-<?php echo $i?> h-25 rounded-2 mx-1">
+                        <h1 class="text-light px-2 fs-1">8<span class="float-end px-3">
+                        <div class="dropdown">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="5.33" height="20" viewBox="0 0 5.33 20" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            <path id="Icon_awesome-ellipsis-v" data-name="Icon awesome-ellipsis-v" d="M4.353,13.466a2.79,2.79,0,0,0,2.665-2.9,2.79,2.79,0,0,0-2.665-2.9,2.79,2.79,0,0,0-2.665,2.9A2.79,2.79,0,0,0,4.353,13.466ZM1.688,17.659a2.79,2.79,0,0,1,2.665-2.9,2.79,2.79,0,0,1,2.665,2.9,2.79,2.79,0,0,1-2.665,2.9A2.79,2.79,0,0,1,1.688,17.659Zm0-14.194A2.79,2.79,0,0,1,4.353.563a2.79,2.79,0,0,1,2.665,2.9,2.79,2.79,0,0,1-2.665,2.9A2.79,2.79,0,0,1,1.688,3.466Z" transform="translate(-1.688 -0.563)" fill="#fff"/>
+                        </svg>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" href="#">Rename</a></li>
+                            <li>
+                            <a class="dropdown-item" href="collection/deleteCollection?id=<?php echo $coll_data->collectionId?>">Delete</a>
+                            </li>
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#triggerNewResource">New Resource</a></li>
+                        </ul>
+                            </div>      
+                        </span>
+                        </h1>
 
-            <div class="collection-group col-12 h-100 d-flex flex-wrap justify-content-evenly">
-                <div class="collection collection-1 col-2 h-25 rounded-2">
-                    <h1 class="text-light px-2 fs-1">8<span class="float-end px-3">
-                    <div class="dropdown">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="5.33" height="20" viewBox="0 0 5.33 20" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-            <path id="Icon_awesome-ellipsis-v" data-name="Icon awesome-ellipsis-v" d="M4.353,13.466a2.79,2.79,0,0,0,2.665-2.9,2.79,2.79,0,0,0-2.665-2.9,2.79,2.79,0,0,0-2.665,2.9A2.79,2.79,0,0,0,4.353,13.466ZM1.688,17.659a2.79,2.79,0,0,1,2.665-2.9,2.79,2.79,0,0,1,2.665,2.9,2.79,2.79,0,0,1-2.665,2.9A2.79,2.79,0,0,1,1.688,17.659Zm0-14.194A2.79,2.79,0,0,1,4.353.563a2.79,2.79,0,0,1,2.665,2.9,2.79,2.79,0,0,1-2.665,2.9A2.79,2.79,0,0,1,1.688,3.466Z" transform="translate(-1.688 -0.563)" fill="#fff"/>
-            </svg>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="#">Rename</a></li>
-                <li><a class="dropdown-item" href="#">Delete</a></li>
-            </ul>
-            </div>      
-            </span></h1>
-
-            <p class="text-light fs-5  col-10 mx-auto mt-4"><span class="fw-bold">PHP</span>resources</p>
-                <hr class="col-10 mx-auto bg-white">
-                <a href="<?= site_url('ResourceHandler/fetchResources/1')?>" class="text-light float-end px-4 py-4">View All</a>
+                <p class="text-light fs-5  col-10 mx-auto mt-4"><span class="fw-bold me-1"><?php echo $coll_data->collectionName ?></span>resources</p>
+                    <hr class="col-10 mx-auto bg-white">
+                    <a href="#" class="text-light float-end px-4 py-4">View All</a>
                 </div>
+        <?php 
+            $i++; }
+        ?>
+        </div>
 
-                <div class="collection collection-2 col-2 h-25 rounded-2 ml-3">
-                    <h1 class="text-light px-2 fs-1">8<span class="float-end px-3">
-                                <div class="dropdown">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="5.33" height="20" viewBox="0 0 5.33 20" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-            <path id="Icon_awesome-ellipsis-v" data-name="Icon awesome-ellipsis-v" d="M4.353,13.466a2.79,2.79,0,0,0,2.665-2.9,2.79,2.79,0,0,0-2.665-2.9,2.79,2.79,0,0,0-2.665,2.9A2.79,2.79,0,0,0,4.353,13.466ZM1.688,17.659a2.79,2.79,0,0,1,2.665-2.9,2.79,2.79,0,0,1,2.665,2.9,2.79,2.79,0,0,1-2.665,2.9A2.79,2.79,0,0,1,1.688,17.659Zm0-14.194A2.79,2.79,0,0,1,4.353.563a2.79,2.79,0,0,1,2.665,2.9,2.79,2.79,0,0,1-2.665,2.9A2.79,2.79,0,0,1,1.688,3.466Z" transform="translate(-1.688 -0.563)" fill="#fff"/>
-            </svg>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="#">Rename</a></li>
-                <li><a class="dropdown-item" href="#">Delete</a></li>
-            </ul>
-            </div>
-                        
-            </span></h1>
-
-            <p class="text-light fs-5  col-10 mx-auto mt-4"><span class="fw-bold">PHP</span>resources</p>
-                <hr class="col-10 mx-auto bg-white">
-                <a href="#" class="text-light float-end px-4 py-4">View All</a>
-                </div>
-
-
-                <div class="collection collection-3 col-2 h-25 rounded-2 ml-">
-                    <h1 class="text-light px-2 fs-1">8<span class="float-end px-3">
-
-                    <div class="dropdown">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="5.33" height="20" viewBox="0 0 5.33 20" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-            <path id="Icon_awesome-ellipsis-v" data-name="Icon awesome-ellipsis-v" d="M4.353,13.466a2.79,2.79,0,0,0,2.665-2.9,2.79,2.79,0,0,0-2.665-2.9,2.79,2.79,0,0,0-2.665,2.9A2.79,2.79,0,0,0,4.353,13.466ZM1.688,17.659a2.79,2.79,0,0,1,2.665-2.9,2.79,2.79,0,0,1,2.665,2.9,2.79,2.79,0,0,1-2.665,2.9A2.79,2.79,0,0,1,1.688,17.659Zm0-14.194A2.79,2.79,0,0,1,4.353.563a2.79,2.79,0,0,1,2.665,2.9,2.79,2.79,0,0,1-2.665,2.9A2.79,2.79,0,0,1,1.688,3.466Z" transform="translate(-1.688 -0.563)" fill="#fff"/>
-            </svg>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="#">Rename</a></li>
-                <li><a class="dropdown-item" href="#">Delete</a></li>
-            </ul>
-            </div>
-            </span></h1>
-
-            <p class="text-light fs-5  col-10 mx-auto mt-4"><span class="fw-bold">PHP</span>resources</p>
-                <hr class="col-10 mx-auto bg-white">
-                <a href="#" class="text-light float-end px-4 py-4">View All</a>
-                </div>
-
-                <div class="collection collection-4 col-2 h-25 rounded-2">
-                    <h1 class="text-light px-2 fs-1">8<span class="float-end px-3">
-                    <div class="dropdown">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="5.33" height="20" viewBox="0 0 5.33 20" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-            <path id="Icon_awesome-ellipsis-v" data-name="Icon awesome-ellipsis-v" d="M4.353,13.466a2.79,2.79,0,0,0,2.665-2.9,2.79,2.79,0,0,0-2.665-2.9,2.79,2.79,0,0,0-2.665,2.9A2.79,2.79,0,0,0,4.353,13.466ZM1.688,17.659a2.79,2.79,0,0,1,2.665-2.9,2.79,2.79,0,0,1,2.665,2.9,2.79,2.79,0,0,1-2.665,2.9A2.79,2.79,0,0,1,1.688,17.659Zm0-14.194A2.79,2.79,0,0,1,4.353.563a2.79,2.79,0,0,1,2.665,2.9,2.79,2.79,0,0,1-2.665,2.9A2.79,2.79,0,0,1,1.688,3.466Z" transform="translate(-1.688 -0.563)" fill="#fff"/>
-            </svg>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="#">Rename</a></li>
-                <li><a class="dropdown-item" href="#">Delete</a></li>
-            </ul>
-            </div>
-            </span></h1>
-
-            <p class="text-light fs-5  col-10 mx-auto mt-4"><span class="fw-bold">PHP</span>resources</p>
-                <hr class="col-10 mx-auto bg-white">
-                <a href="#" class="text-light float-end px-4 py-4">View All</a>
-                </div>
-
-
-            </div>
-            </div>
-
-   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+   <!-- <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
     <li><a class="dropdown-item" href="#">Action</a></li>
     <li><a class="dropdown-item" href="#">Another action</a></li>
     <li><a class="dropdown-item" href="#">Something else here</a></li>
-  </ul>
+  </ul> -->
 
   <div class="modal fade" id="triggerNewResource" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="triggerNewResourceLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -233,8 +253,8 @@
     </div>
     </div>
     </div>
-
  
+<!-- New Collection form -->
  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -243,17 +263,41 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-          <form action="#" method="post">
+          <form action=<?php echo base_url("collection/addCollection") ?> method="post">
              <div class="form-floating mb-3">
-              <input type="text" class="form-control shadow-none" id="floatingInput" placeholder="collection Name" name="collectionName">
+              <input type="text" name="col_name" class="form-control shadow-none" id="floatingInput" placeholder="collection Name" name="collectionName">
               <label for="floatingInput">Collection Name</label>
+              <small><?php echo form_error('col_name') ?></small>
             </div>
-
-            </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary">Save</button>
+        <input type="submit" class="btn btn-primary" value="Save">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Update collection modal -->
+<div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Rename Collection</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <form action=<?php echo base_url("collection/updateCollection") ?> method="post">
+             <div class="form-floating mb-3">
+              <input type="text" name="col_name" class="form-control shadow-none" id="floatingInput" value=<?php echo $coll_data->collectionName ?> name="collectionName">
+              <input type="text" name="id" hidden value=<?php echo $coll_data->collectionId?>>
+              <label for="floatingInput">New name</label>
+            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+        <input type="submit" class="btn btn-primary" value="Save">
+        </form>
       </div>
     </div>
   </div>

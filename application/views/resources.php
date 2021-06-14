@@ -36,6 +36,11 @@
         a span{
             color:#BC25A8;
         }
+        a i.fa-user{
+            padding:5px;
+            border-radius:50%;
+            border:1px solid #ddd;
+        }
         hr {
             margin-top: -10px
         }
@@ -78,13 +83,8 @@
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul class="navbar-nav w-100 d-flex justify-content-around me-auto mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link fw-bold" aria-current="page"  href="#">
+                            <a class="nav-link fw-bold active" aria-current="page"  href="#">
                             <i class="fas fa-home"></i>    Home
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link fw-bold active" href="#">
-                            <i class="fas fa-file"></i>   Resources
                             </a>
                         </li>
                         <li class="nav-item">
@@ -101,7 +101,48 @@
                                     <li class="border-bottom text-nowrap">Resource added successfully</li>
                                     <li class="text-center">Clear All</li>
                                 </ul>
-                        </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal1" href="#">
+                                <i class="fas fa-user"></i>    MPeter
+                            </a>
+                            <!-- Update info model -->
+                            <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Update Profile</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="" method="post">
+                                            <div class="mb-3">
+                                                <label for="r_name" class="form-label">Names</label>
+                                                <input type="text" name="resource_name" id="r_name" class="form-control">
+                                            </div>
+                                            <select class="form-select " aria-label="Default select example">
+                                                <option selected>District</option>
+                                                <option value="1">Rwanda</option>
+                                                <option value="2">Kenya</option>
+                                                <option value="3">Burundi</option>
+                                            </select>
+            
+                                            <select class="form-select mb-3 mt-3" aria-label="Default select example">
+                                                <option selected>Sector</option>
+                                                <option value="1">Manager</option>
+                                                <option value="2">Admin</option>
+                                                <option value="3">Instructor</option>
+                                            </select>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                        <input type="submit" class="btn btn-primary" value="Save">
+                                    </div>
+                                            </form>
+                                    </div>
+                                </div>
+                            </div>
                         </li>
                         <li class="nav-item ">
                             <a class="nav-link fw-bold" href="#">
