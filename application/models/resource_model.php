@@ -30,10 +30,10 @@
              return false;
           }
       }
-      10101
+     
 
-     public function edit_resource($editArr,$resourceId) {
-        $this->db->where('id',$resourceId);
+     public function update_resource($editArr,$resourceId) {
+        $this->db->where('resourceId',$resourceId);
 
         if($this->db->update('resource',$editArr)) {
            return true;
@@ -44,7 +44,9 @@
 
 
      public function delete_resource($resourceId) {
-        if($this->db->delete('resource',array('id'=>$resourceId))) {
+      $this->db->set('status', 'Disabled');
+      $this->db->where('resourceId',$resourceId);
+      if($this->db->update('resource')) {
            return true;
         }else {
            return false;

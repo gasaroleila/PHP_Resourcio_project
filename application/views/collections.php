@@ -124,14 +124,13 @@
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li><a class="dropdown-item" href="#">Rename</a></li>
                 <li><a class="dropdown-item" href="#">Delete</a></li>
-                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#triggerNewResource">New Resource</a></li>
             </ul>
             </div>      
             </span></h1>
 
             <p class="text-light fs-5  col-10 mx-auto mt-4"><span class="fw-bold">PHP</span>resources</p>
                 <hr class="col-10 mx-auto bg-white">
-                <a href="<?= site_url('ResourceHandler/fetchResources')?>" class="text-light float-end px-4 py-4">View All</a>
+                <a href="<?= site_url('ResourceHandler/fetchResources/1')?>" class="text-light float-end px-4 py-4">View All</a>
                 </div>
 
                 <div class="collection collection-2 col-2 h-25 rounded-2 ml-3">
@@ -143,7 +142,6 @@
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li><a class="dropdown-item" href="#">Rename</a></li>
                 <li><a class="dropdown-item" href="#">Delete</a></li>
-                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#triggerNewResource">New Resource</a></li>
             </ul>
             </div>
                         
@@ -165,7 +163,6 @@
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li><a class="dropdown-item" href="#">Rename</a></li>
                 <li><a class="dropdown-item" href="#">Delete</a></li>
-                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#triggerNewResource">New Resource</a></li>
             </ul>
             </div>
             </span></h1>
@@ -184,7 +181,6 @@
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li><a class="dropdown-item" href="#">Rename</a></li>
                 <li><a class="dropdown-item" href="#">Delete</a></li>
-                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#triggerNewResource">New Resource</a></li>
             </ul>
             </div>
             </span></h1>
