@@ -30,7 +30,7 @@ class ResourceHandler extends CI_Controller {
 	   $this->form_validation->set_rules('resourceLink','Resource Link','trim|required|prep_url');
 
 	   if($this->form_validation->run() === FALSE) {
-        die(validation_errors());
+         $this->fetchResources($collectionId);
 	}else {
 		   $resourceData = array('resourceName'=>$this->input->post('resourceName'),
 		                        'description'=> $this->input->post('resourceDescription'),

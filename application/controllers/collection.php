@@ -8,13 +8,17 @@ class Collection extends CI_Controller{
 
     public function addCollection(){
 
-        $this->form_validation->set_rules('col_name','Collection name','required|trim|min_length[3]|max_length[40]' );
+        $this->form_validation->set_rules('col_name','Collection name','alpha_numeric|required|trim|min_length[3]|max_length[40]' );
 
-        $name=$this->input->post('col_name');
-        $data=[
+        $name=trim($this->input->post('col_name'));
+
+        if($name !== '' && ctype_alnum($name)) {
+          $data=[
             'collectionName'=>$name
-        ];
+          ];
         $this->collection_model->saveCollection($data);
+        }
+        
         redirect('collection');
     }
 

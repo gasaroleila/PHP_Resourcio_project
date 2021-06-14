@@ -186,9 +186,12 @@ if(!$this->session->userdata('username')){
                 ?>
                     <div class="collection collection-<?php echo $i?> h-25 rounded-2 mx-1">
                       <?php
-                         
+                        $coll_id = $coll_data->collectionId;
+                         $this->db->select('*');
+                         $query = $this->db->get_where('resource', array('collectionId'=>$coll_id, 'status'=>'Active'));
+                         $count = $query->num_rows();
                       ?>
-                        <h1 class="text-light px-2 fs-1">8<span class="float-end px-3">
+                        <h1 class="text-light px-2 fs-1"><?= $count ?><span class="float-end px-3">
                         <div class="dropdown">
                         <svg xmlns="http://www.w3.org/2000/svg" width="5.33" height="20" viewBox="0 0 5.33 20" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                             <path id="Icon_awesome-ellipsis-v" data-name="Icon awesome-ellipsis-v" d="M4.353,13.466a2.79,2.79,0,0,0,2.665-2.9,2.79,2.79,0,0,0-2.665-2.9,2.79,2.79,0,0,0-2.665,2.9A2.79,2.79,0,0,0,4.353,13.466ZM1.688,17.659a2.79,2.79,0,0,1,2.665-2.9,2.79,2.79,0,0,1,2.665,2.9,2.79,2.79,0,0,1-2.665,2.9A2.79,2.79,0,0,1,1.688,17.659Zm0-14.194A2.79,2.79,0,0,1,4.353.563a2.79,2.79,0,0,1,2.665,2.9,2.79,2.79,0,0,1-2.665,2.9A2.79,2.79,0,0,1,1.688,3.466Z" transform="translate(-1.688 -0.563)" fill="#fff"/>
@@ -239,12 +242,9 @@ if(!$this->session->userdata('username')){
 
         </div>
 
-<<<<<<< HEAD
      
        
 
-=======
->>>>>>> 61a14feb73cfdace0abe8003e4df48dc0640e96d
   <div class="modal fade" id="triggerNewResource" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="triggerNewResourceLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -288,7 +288,7 @@ if(!$this->session->userdata('username')){
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-          <form action=<?php echo base_url("collection/addCollection") ?> method="post">
+          <form action<?php echo base_url("collection/addCollection") ?> method="post">
              <div class="form-floating mb-3">
               <input type="text" name="col_name" class="form-control shadow-none" id="floatingInput" placeholder="collection Name" name="collectionName">
               <label for="floatingInput">Collection Name</label>
