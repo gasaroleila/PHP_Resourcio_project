@@ -41,7 +41,7 @@
 </head>
 <body class="d-flex justify-content-center">
 <div class="container bg-white rounded p-4 shadow-lg col-lg-5 col-xl-4 col-md-6 col-sm-7 col-9">
-        <h3 class="fw-bold mb-3">Log In</h3>
+    <h3 class="fw-bold mb-3">Log In</h3>
 
     <?php $attributes=array('class'=>'mt-auto');?>
     <?php echo "<p class='errors'>".validation_errors()."</p>"?>
@@ -83,9 +83,20 @@
     ?>
     <a href="<?= site_url('User/user_reset') ?>" class="d-block float-end">Forgot Password?</a>
     <?php echo form_submit($attr)?>
-
+    <?php 
+    $message=$this->session->flashdata('error');
+    if (isset($message)):?>
+    <?php echo $this->session->flashdata('error');
+     $this->session->unset_userdata('error');?> 
+    <?php endif;?>
+    
+    <?php
+    $err=$this->session->flashdata('inactive');
+    if (isset($err)):?>
+    <?php echo $this->session->flashdata('inactive');
+    $this->session->unset_userdata('inactive');?> 
+    <?php endif;?>
     <?php echo form_close();?>
-          </form>
         </div>
     </div>
 </body>

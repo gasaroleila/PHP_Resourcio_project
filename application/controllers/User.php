@@ -15,13 +15,9 @@ class User extends CI_Controller {
     public function login_view(){
         $this->load->view('user/login');
     }
-
-    public function update_profile($id,$name) {
-        $this->User_model->update_profile($id,$name);
-        $this->load->view('collections');
+    public function landing_page(){
+        $this->load->view('landing');
     }
-
-
     public function login() {
        $this->form_validation->set_rules('email','Email',
        'trim|required|valid_email', 
@@ -40,12 +36,33 @@ class User extends CI_Controller {
         {
             $email=$this->input->post('email');
             $password=hash('SHA512',$this->input->post('Password'));
-            $this->User_model->login_user($email,$password);
-        
+            $user=$this->User_model->login_user($email,$password); 
+            if($user && ($user[0]->status==='Active')){
+                $session_data=array(
+                    'studentId'=>$user[0]->studentId,
+                    'studentNames'=>$user[0]->studentNames,
+                    'email'=>$user[0]->email,
+                    'districtId'=>$user[0]->districtId,
+                    'sectorId'=>$user[0]->sectorId,
+                    'username'=>$user[0]->username,
+                    'status'=>$user[0]->status,
+                );
+                $this->session->set_userdata($session_data);
+                //You  can access this session using this method $this->session->userdata('username');
+                redirect(base_url().'collection'); 
+            }else{
+                $error=array(
+                    'error'=>'Incorrect email or password',
+                );
+                $this->session->set_flashdata($error);
+                 $this->login_view();
+            }
+    
         }
 
     }
 
+    
     public function register() {
     
         $this->form_validation->set_rules('names', 'Names', 'trim|required|min_length[4]|max_length[40]');
@@ -67,17 +84,22 @@ class User extends CI_Controller {
             'username'=>$this->input->post('username'),
             'password'=>hash('SHA512',$this->input->post('password')),
            );
-            $this->User_model->insertUser($data);
+            if($this->User_model->insertUser($data)){
+                $this->login_view();
+            }
         }
        
 }
 
 
-  public function user_reset() {
-      $this->load->view('user_reset');
+public function user_reset() {
+    $this->load->view('user_reset');
   }
 
-
+public function logout(){
+    $this->session->sess_destroy();
+    $this->login_view();
+ }
 
 }
 
