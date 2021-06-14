@@ -9,6 +9,9 @@ class User extends CI_Controller {
     public function login_view(){
         $this->load->view('user/login');
     }
+    public function resources(){
+        $this->load->view('resources');
+    }
     public function login() {
        $this->form_validation->set_rules('email','Email',
        'trim|required|valid_email', 
