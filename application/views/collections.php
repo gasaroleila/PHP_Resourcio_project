@@ -186,7 +186,6 @@
         <div class="collection-group col-12 h-100 d-flex flex-wrap justify-content-left">
         <?php 
             foreach ($colls_data as $coll_data) {
-                $i=1;
                 ?>
                     <div class="collection collection-<?php echo $i?> h-25 rounded-2 mx-1">
                         <h1 class="text-light px-2 fs-1">8<span class="float-end px-3">
@@ -207,7 +206,7 @@
 
                 <p class="text-light fs-5  col-10 mx-auto mt-4"><span class="fw-bold me-1"><?php echo $coll_data->collectionName ?></span>resources</p>
                     <hr class="col-10 mx-auto bg-white">
-                    <a href="#" class="text-light float-end px-4 py-4">View All</a>
+                    <a href="<?= site_url('ResourceHandler/fetchResources/').$coll_data->    collectionId?>" class="text-light float-end px-4 py-4">View All</a>
                 </div>
         <?php 
             $i++; }
