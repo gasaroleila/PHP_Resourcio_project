@@ -86,7 +86,7 @@ class User extends CI_Controller {
             'password'=>hash('SHA512',$this->input->post('password')),
            );
             if($this->User_model->insertUser($data)){
-                $this->login_view();
+                $this->landing_page();
             }
         }
        
@@ -172,7 +172,8 @@ class User extends CI_Controller {
 
 public function logout(){
     $this->session->sess_destroy();
-    $this->login_view();
+    $this->landing_page();
+
  }
 
 }

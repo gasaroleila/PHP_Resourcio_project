@@ -116,7 +116,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal1" href="#">
-                                <i class="fas fa-user"></i>    MPeter
+                                <i class="fas fa-user"></i>   <?php echo $this->session->userdata('username') ?>
                             </a>
                             <!-- Update info model -->
                             <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
@@ -156,7 +156,7 @@
                             </div>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link fw-bold" href=<?php echo site_url("User/logout")?>
+                            <a class="nav-link fw-bold" href="<?= site_url('User/logout')?>">
                                 <i class="fas fa-sign-out-alt"></i>Logout
                             </a>
                         </li>
