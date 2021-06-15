@@ -156,7 +156,7 @@
                             </div>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link fw-bold" href="#">
+                            <a class="nav-link fw-bold" href=<?php echo site_url("User/logout")?>
                                 <i class="fas fa-sign-out-alt"></i>Logout
                             </a>
                         </li>
