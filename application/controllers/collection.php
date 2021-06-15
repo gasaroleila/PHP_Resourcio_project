@@ -43,53 +43,49 @@ class Collection extends CI_Controller{
 
     public function view_all_resources() {
 
+        $pdf = new FPDF();
+            $pdf->AddPage('L');  
+            $pdf->SetFont('Arial','U',12);
+            $image = base_url('logo.png');
+            $pdf->Cell( 40, 40, $pdf->Image($image, $pdf->GetX(), $pdf->GetY(), 80.78), 0, 0, 'L', false );
+            $pdf->Ln();
+            $pdf->Cell(280,7,'MY RESOURCES',0,0,'C');
+            $pdf->Ln();
+            $pdf->setLeftMargin(180);
+            $pdf->setLeftMargin(20);
+            $pdf->SetFont('Arial','',12);
+            $header = array('Resource Names','Description');
 
-$pdf = new FPDF();
-  $pdf->AddPage('L');  
-  $pdf->SetFont('Arial','U',12);
-  $image = base_url('logo.png');
-  $pdf->Cell( 40, 40, $pdf->Image($image, $pdf->GetX(), $pdf->GetY(), 80.78), 0, 0, 'L', false );
-  $pdf->Ln();
-  $pdf->Cell(280,7,'MY RESOURCES',0,0,'C');
-  $pdf->Ln();
-  $pdf->setLeftMargin(180);
-  $pdf->setLeftMargin(20);
-  $pdf->SetFont('Arial','',12);
-  $header = array('Resource Names','Description');
-{
-    
-    // Closing line
-}
- $this->db->select('*');
- $rows = $this->db->get_where('resource',array('status'=>'Active'))->result_array();
- $pdf->setLeftMargin(60);
- if(count($rows)>0) {
-    $w = array(60, 120);
-    $pdf->SetFont('Arial','B',12);
-    $pdf->Ln();
+                $this->db->select('*');
+                $rows = $this->db->get_where('resource',array('status'=>'Active'))->result_array();
+                $pdf->setLeftMargin(60);
+                if(count($rows)>0) {
+                    $w = array(60, 120);
+                    $pdf->SetFont('Arial','B',12);
+                    $pdf->Ln();
 
-    for($i=0;$i<count($header);$i++) {
-        $pdf->Cell($w[$i],7,$header[$i],1,0,'L');
-    }
+                    for($i=0;$i<count($header);$i++) {
+                        $pdf->Cell($w[$i],7,$header[$i],1,0,'L');
+                    }
 
-    $pdf->SetFont('Arial','',12);
+                    $pdf->SetFont('Arial','',12);
 
-    $pdf->Ln();
-    foreach($rows as $row) {
-       $pdf->Cell($w[0],7,$row['resourceName'],1,0,'L');
-       $pdf->Cell($w[1],7,$row['description'],1,0,'L');
-       
-       $pdf->Ln();
-   }
-   
+                    $pdf->Ln();
+                    foreach($rows as $row) {
+                    $pdf->Cell($w[0],7,$row['resourceName'],1,0,'L');
+                    $pdf->Cell($w[1],7,$row['description'],1,0,'L');
+                    
+                    $pdf->Ln();
+                }
+                
 
-   $pdf->Cell(array_sum($w),0,'','T');
+                $pdf->Cell(array_sum($w),0,'','T');
 
- }else {
-   echo "failed";
- }
+                }else {
+                echo "failed";
+                }
 
-  $pdf->Output();
+                $pdf->Output();
 
 
     }
