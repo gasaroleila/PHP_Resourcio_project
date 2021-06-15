@@ -105,7 +105,7 @@ class User extends CI_Controller {
         $code = bin2hex(random_bytes(6));
         $message = "
         <h3 style='color: black; font-family: Segoe UI'>Follow the link below to change your password</h3>
-        <a style='color: white; background: dodgerblue; padding: 10px; width: 100px;' href='http://localhost/PHP_Resourcio_project/user/change_password_view/$code'>Click Here<a/></a>
+        <a style='color: white; background: dodgerblue; padding: 10px; width: 100px;' href='http://localhost/PHP_frameworks/codeigniter/projects/classProjects/resourcio/PHP_Resourcio_project/user/change_password_view/$code'>Click Here<a/></a>
         ";
         $config = array(
             'protocol' => 'smtp',

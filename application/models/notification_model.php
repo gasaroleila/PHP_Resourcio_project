@@ -8,7 +8,7 @@
         }
 
         public function deleteAllNotitifactions($id){
-            $this->db->query("delete notifications where studentId = '$id'");
+            $this->db->query("delete from notifications where studentId = '$id'");
     
         }
     }
