@@ -87,6 +87,10 @@
             margin-left: -33em;
             margin-top: 20px
         }
+
+        .container {
+            overflow-y: scroll;
+        }
     </style>
 </head>
 <body>
@@ -305,10 +309,6 @@
     </div>
   </div>
 </div>
-<<<<<<< HEAD
-
-=======
->>>>>>> 396b22aa029fb2e667aab1fc18de3d83aa4a20af
     </div>
     </div>
 

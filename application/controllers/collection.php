@@ -45,13 +45,12 @@ class Collection extends CI_Controller{
 $pdf = new FPDF();
   $pdf->AddPage('L');  
   $pdf->SetFont('Arial','U',12);
+  $image = base_url('logo.png');
+  $pdf->Cell( 40, 40, $pdf->Image($image, $pdf->GetX(), $pdf->GetY(), 80.78), 0, 0, 'L', false );
   $pdf->Ln();
-  $pdf->Ln();
-  $pdf->Cell(280,7,'LIST OF ALL RESOURCES',0,0,'C');
+  $pdf->Cell(280,7,'MY RESOURCES',0,0,'C');
   $pdf->Ln();
   $pdf->setLeftMargin(180);
-  $image = base_url('undraw_chore_list_re_2lq8.png');
-  $pdf->Cell( 40, 40, $pdf->Image($image, $pdf->GetX(), $pdf->GetY(), 100.78), 0, 0, 'L', false );
   $pdf->setLeftMargin(20);
   $pdf->SetFont('Arial','',12);
   $header = array('Resource Names','Description');
@@ -61,6 +60,7 @@ $pdf = new FPDF();
 }
  $this->db->select('*');
  $rows = $this->db->get_where('resource',array('status'=>'Active'))->result_array();
+ $pdf->setLeftMargin(60);
  if(count($rows)>0) {
     $w = array(60, 120);
     $pdf->SetFont('Arial','B',12);
