@@ -309,10 +309,6 @@
     </div>
   </div>
 </div>
-<<<<<<< HEAD
-
-=======
->>>>>>> 396b22aa029fb2e667aab1fc18de3d83aa4a20af
     </div>
     </div>
 
