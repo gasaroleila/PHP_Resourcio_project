@@ -37,8 +37,7 @@ class User extends CI_Controller {
             $email=$this->input->post('email');
             $password=hash('SHA512',$this->input->post('Password'));
             $user=$this->User_model->login_user($email,$password); 
-            if($user){
-                // var_dump($user);
+            if($user && ($user[0]->status==='Active')){
                 $session_data=array(
                     'studentId'=>$user[0]->studentId,
                     'studentNames'=>$user[0]->studentNames,
@@ -46,6 +45,7 @@ class User extends CI_Controller {
                     'districtId'=>$user[0]->districtId,
                     'sectorId'=>$user[0]->sectorId,
                     'username'=>$user[0]->username,
+                    'status'=>$user[0]->status,
                 );
                 $this->session->set_userdata($session_data);
                 //You  can access this session using this method $this->session->userdata('username');
@@ -92,11 +92,14 @@ class User extends CI_Controller {
 }
 
 
-  public function user_reset() {
-      $this->load->view('user_reset');
+public function user_reset() {
+    $this->load->view('user_reset');
   }
 
-
+public function logout(){
+    $this->session->sess_destroy();
+    $this->login_view();
+ }
 
 }
 

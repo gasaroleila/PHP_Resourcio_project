@@ -8,10 +8,10 @@
             $this->load->view('collections',$data);
         }
 
-        function clearAll(){
+        function clearAll($collectionId){
                 $userId = $this->session->userdata('studentId');
                 $this->notification_model->deleteAllNotitifactions($userId);
-                redirect('collection');
+                redirect(site_url('ResourceHandler/fetchResources/').$collectionId);
         }
 
     }

@@ -97,9 +97,15 @@
 
                                 <ul class="dropdown-menu notifications" aria-labelledby="dropdownMenuLink">
                                     <li class="fw-bold border-bottom pb-2 ps-2">Notifications</li>
-                                    <li class="border-bottom text-nowrap">PHP collection created successfully</li>
-                                    <li class="border-bottom text-nowrap">Resource added successfully</li>
-                                    <li class="text-center">Clear All</li>
+                                    <?php
+                                    foreach($notification as $notifyData){ ?>
+                                    <li class="border-bottom text-nowrap"><?= $notifyData->title ?></li>
+                                    
+                                    <?php
+                                    }
+                                    $collectionId = $parentId['collectionId'];
+                                    ?>
+                                    <li class="text-center"><a href="<?= site_url('notification_controller/clearAll/').$collectionId?>"> Clear All</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -156,7 +162,7 @@
     <div class="container col-9 shadow mt-5">
         <div class="header d-flex justify-content-between">
              <?php
-                $collectionId = $parentId['collectionId'];
+                
                 $this->db->select('*');
                 $collectionData = $this->db->get_where('collection',array('collectionId'=>$collectionId))->result_array();
              ?>

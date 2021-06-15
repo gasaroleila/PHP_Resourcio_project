@@ -88,6 +88,7 @@
                         <a class="nav-link fw-bold" href="#">
                             <i class="fas fa-bell"></i>    Notifications
                         </a>
+                        
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link fw-bold" href="#">
