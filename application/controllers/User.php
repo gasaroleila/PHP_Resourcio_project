@@ -92,10 +92,70 @@ class User extends CI_Controller {
 }
 
 
-  public function user_reset() {
+  public function user_reset_view() {
       $this->load->view('user_reset');
   }
 
+  public function user_reset(){
+      $email=$this->input->post('email');
+
+      if($this->User_model->checkEmail($email)){
+        $subject = "Password Reset Link";
+        $code = bin2hex(random_bytes(6));
+        $message = "
+        <h3 style='color: black; font-family: Segoe UI'>Follow the link below to change your password</h3>
+        <a style='color: white; background: dodgerblue; padding: 10px; width: 100px;' href='http://localhost/PHP_Resourcio_project/user/change_password_view/$code'>Click Here<a/></a>
+        ";
+        $config = array(
+            'protocol' => 'smtp',
+            'smtp_host' => 'ssl://smtp.gmail.com',
+            'smtp_port' => 465,
+            'smtp_user' => 'mfitep6@gmail.com',
+            'smtp_pass' => 'Mama2batoto.',
+            'mailtype' => 'html',
+            'charset' => 'iso-8859-1'
+        );
+        $this->load->library('email');
+        $this->email->initialize($config);
+        $this->email->set_newline("\r\n");
+        $this->email->from('mfitep6@gmail.com');
+        $this->email->to($email);
+        $this->email->subject($subject);
+        $this->email->message($message);
+        if ($this->email->send()) {
+            echo "Email sent. Check your inbox.";
+            $this->User_model->saveCode($code,$email);
+        } else {
+            echo "Error while sending email";
+        }
+    }
+
+      else{
+        echo "Invalid email";
+      }
+  }
+  public function change_password_view($random){
+    $result=$this->User_model->getUserWithCode($random);
+    if($result){
+        $data['email']=$result[0]->email;
+        $this->load->view('change_password',$data);
+    }else{
+        echo "Link broken.";
+    }
+  }
+  public function change_password(){
+      $email=$this->input->post('email');
+      $password=$this->input->post('password');
+      $hashed=hash('SHA512',$password);
+      $this->User_model->newPassword($email,$hashed);
+
+      $link = site_url('User/login');
+      echo "
+      Password changed successfully. <a href='$link'> Back to login </a>
+      ";
+
+
+  }
 
 
 }
