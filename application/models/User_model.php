@@ -40,5 +40,14 @@ class User_model extends CI_model{
         $this->db->query("update student set password = '$password' where email='$email'");
         $this->db->query("update student set reset_link = NULL where email = '$email'");
     }
+    public function update_profile($id,$name) {
+        $this->db->set('studentName',$name);
+        $this->db->where('studentId', $id);
+        if($this->db->update('student')) {
+            return true;
+        }else {
+            return false;
+        }
+    }
 }
 ?>

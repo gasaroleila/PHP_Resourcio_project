@@ -40,11 +40,17 @@
     </style>
 </head>
 <body class="d-flex justify-content-center">
-<div class="container bg-white rounded p-4 shadow-lg col-lg-5 col-xl-4 col-md-6 col-sm-7 col-9">
-    <h3 class="fw-bold mb-3">Log In</h3>
+    <div class="container bg-white rounded p-4 shadow-lg col-lg-5 col-xl-4 col-md-6 col-sm-7 col-9">
+        <h3 class="fw-bold mb-3">Log In</h3>
+        
+    <?php 
+    $message=$this->session->flashdata('error');
+    if (isset($message)):?>
+    <?php echo "<small class='text-danger'>".$this->session->flashdata('error')."</small>";
+     $this->session->unset_userdata('error');?> 
+    <?php endif;?>
 
     <?php $attributes=array('class'=>'mt-auto');?>
-    <?php echo "<p class='errors'>".validation_errors()."</p>"?>
     <?php echo form_open(base_url('login'),$attributes)?>
 
     <div class="form-floating mb-3">
@@ -58,6 +64,7 @@
         );
         ?>
     <?php echo form_input($atts)?>
+    <small class="text-danger"><?= form_error('email') ?></small>
     <?php echo form_label('Email','"for"="floatingInput"')?>
     </div>
 
@@ -70,6 +77,7 @@
             );
             ?>
         <?php echo form_password($attr)?>
+        <small class="text-danger"><?= form_error('Password') ?></small>
         <?php echo form_label('Password',)?>
     </div>
    
@@ -83,11 +91,12 @@
     ?>
     <a href="<?= site_url('User/user_reset_view') ?>" class="d-block float-end">Forgot Password?</a>
     <?php echo form_submit($attr)?>
-    <?php 
-    $message=$this->session->flashdata('error');
-    if (isset($message)):?>
-    <?php echo $this->session->flashdata('error');
-     $this->session->unset_userdata('error');?> 
+    
+    <?php
+    $err=$this->session->flashdata('inactive');
+    if (isset($err)):?>
+    <?php echo $this->session->flashdata('inactive');
+    $this->session->unset_userdata('inactive');?> 
     <?php endif;?>
     <?php echo form_close();?>
         </div>

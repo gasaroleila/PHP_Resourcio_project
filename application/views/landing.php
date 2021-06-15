@@ -23,6 +23,9 @@
         header button{
             border: 1px solid #5708D3!important;
         }
+        header button a{
+            text-decoration: none;
+        }
         h3{
             border-bottom: 3px solid #5708D3!important;
         }
@@ -32,8 +35,8 @@
 <div class="container p-7">
 <header class="col-md-12 float-end mb-5">
     <a class="navbar-brand col-sm-7 fs-2 fw-bold" href="#">Resourc<span>io</span></a>
-    <button type="submit" class="btn float-end mx-3">Login</button>
-    <button type="submit" class="btn float-end m-right-5">Sign Up</button>
+    <button type="submit" class="btn float-end mx-3"><a href="./user/login_view">Login</a> </button>
+    <button type="submit" class="btn float-end m-right-5"><a href="./user">Sign Up</a> </button>
 </header>
 <div class="main">
     <div class="container content">
