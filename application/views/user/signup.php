@@ -31,9 +31,7 @@
         button {
             background-color: #524bd7!important;
         }
-        small {
-          color: red;
-        }
+       
 
     </style>
 </head>
@@ -45,13 +43,13 @@
             <div class="form-floating mb-3">
               <input type="text" class="form-control shadow-none" name="names" id="floatingInput" placeholder="Full names">
               <label for="floatingInput">Full names</label>
-              <small><?= form_error('names') ?></small>
+              <small class="text-danger"><?= form_error('names') ?></small>
             </div>
             
             <div class="form-floating mb-3">
               <input type="email" class="form-control shadow-none" name="email" id="floatingInput" placeholder="Email">
               <label for="floatingInput">Email</label>
-              <small><?= form_error('email') ?></small>
+              <small class="text-danger"><?= form_error('email') ?></small>
             </div>
             
             <select onchange=getSector(this) class="form-select" name="district" aria-label="Default select example" required>
@@ -79,13 +77,13 @@
             <div class="form-floating mb-3">
               <input type="text" class="form-control shadow-none" name="username" id="floatingInput" placeholder="Username">
               <label for="floatingInput">Username</label>
-              <small><?= form_error('username') ?></small>
+              <small class="text-danger"><?= form_error('username') ?></small>
             </div>
 
             <div class="form-floating mb-3">
               <input type="password" class="form-control shadow-none" name="password" id="floatingInput" placeholder="Password">
               <label for="floatingInput">Password</label>
-              <small><?= form_error('password') ?></small>
+              <small class="text-danger"><?= form_error('password') ?></small>
             </div>
 
           <button type="submit" class="btn text-light">Register</button>

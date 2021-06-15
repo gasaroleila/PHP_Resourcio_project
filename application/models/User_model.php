@@ -45,7 +45,26 @@ class User_model extends CI_model{
         }else{
           return false;
         }
-       
     }
+    public function checkEmail($email){
+        $result=$this->db->query("select username from student where email = '$email'");
+        if($result->num_rows()>0){
+            return $result->result();
+        }else{
+            return false;
+        }
+    }
+    public function saveCode($code,$email){
+        $this->db->query("update student set reset_link = '$code' where email= '$email'");
+    }
+    public function getUserWithCode($code){
+        $result=$this->db->query("select email from student where reset_link='$code'");
+        return $result->result();
+    }
+    public function newPassword($email, $password){
+        $this->db->query("update student set password = '$password' where email='$email'");
+        $this->db->query("update student set reset_link = NULL where email = '$email'");
+    }
+   
 }
 ?>

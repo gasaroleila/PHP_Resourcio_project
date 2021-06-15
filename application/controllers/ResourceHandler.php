@@ -10,8 +10,11 @@ class ResourceHandler extends CI_Controller {
     }
 
 	public function fetchResources($collectionId) {
+		$userId = $this->session->userdata('studentId');
 		$data['resources'] = $this->resource_model->fetch_all_resouces($collectionId);
 		$data['parentId'] = array('collectionId'=>$collectionId);
+		$data['notification']=$this->notification_model->get_notifications($userId);
+		// var_dump($data);
 		$this->load->view('resources',$data);
 		
 	}
@@ -27,10 +30,10 @@ class ResourceHandler extends CI_Controller {
 	{
 	   $this->form_validation->set_rules('resourceName','Resource_name','trim|required|min_length[2]|alpha_numeric');
 	   $this->form_validation->set_rules('resourceDescription','Resource Description','trim|required|alpha_numeric_spaces|min_length[2]');
-	   $this->form_validation->set_rules('resourceLink','Resource Link','trim|required|valid_url');
+	   $this->form_validation->set_rules('resourceLink','Resource Link','trim|required|prep_url');
 
 	   if($this->form_validation->run() === FALSE) {
-        die(validation_errors());
+         $this->fetchResources($collectionId);
 	}else {
 		   $resourceData = array('resourceName'=>$this->input->post('resourceName'),
 		                        'description'=> $this->input->post('resourceDescription'),
