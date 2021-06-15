@@ -60,10 +60,7 @@ class User extends CI_Controller {
             }
     
         }
-
     }
-
-    
     public function register() {
     
         $this->form_validation->set_rules('names', 'Names', 'trim|alpha_numeric_spaces|required|min_length[4]|max_length[40]');
@@ -174,6 +171,14 @@ public function logout(){
     $this->session->sess_destroy();
     $this->landing_page();
 
+ }
+ 
+public function disactivate(){
+// die("here");
+   if($this->User_model->remove()){
+       $this->session->sess_destroy();
+       $this->load->view('landing');
+   };
  }
 
 }

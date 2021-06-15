@@ -21,6 +21,31 @@ class User_model extends CI_model{
         return true;
     }
 
+    public function getStudent(){
+        $id=$this->session->userdata('studentId');
+        $this->db->where('studentId',$id);
+        $result = $this->db->get('student');
+        return $result->result();
+    }
+
+    public function Update_user($data){
+        $id=$this->session->userdata('studentId');
+        $this->db->where('studentId',$id);
+        return $this->db->update('student',$data);
+    }
+
+    public function remove(){
+        $id=$this->session->userdata('studentId');
+        $array=array(
+            'status'=>'inactive'
+        );
+        $this->db->where('studentId',$id);
+        if( $this->db->update('student',$array)){
+          return  true;
+        }else{
+          return false;
+        }
+    }
     public function checkEmail($email){
         $result=$this->db->query("select username from student where email = '$email'");
         if($result->num_rows()>0){
@@ -40,14 +65,6 @@ class User_model extends CI_model{
         $this->db->query("update student set password = '$password' where email='$email'");
         $this->db->query("update student set reset_link = NULL where email = '$email'");
     }
-    public function update_profile($id,$name) {
-        $this->db->set('studentName',$name);
-        $this->db->where('studentId', $id);
-        if($this->db->update('student')) {
-            return true;
-        }else {
-            return false;
-        }
-    }
+   
 }
 ?>
