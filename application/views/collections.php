@@ -29,7 +29,7 @@ $userId = $this->session->userdata('studentId');
         body {
             width: 100vw;
             height: 100vh;
-            overflow:hidden
+            overflow-x:hidden;
         }
         nav a{
             color:#524BD7;
