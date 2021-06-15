@@ -41,9 +41,8 @@ class Collection extends CI_Controller{
     }
 
 
-    public function view_all_resources() {
-
-        $pdf = new FPDF();
+public function view_all_resources() {
+$pdf = new FPDF();
             $pdf->AddPage('L');  
             $pdf->SetFont('Arial','U',12);
             $image = base_url('logo.png');
@@ -84,10 +83,7 @@ class Collection extends CI_Controller{
                 }else {
                 echo "failed";
                 }
-
                 $pdf->Output();
-
-
     }
     public function updateUser(){
       $newname=$this->input->post('name');
