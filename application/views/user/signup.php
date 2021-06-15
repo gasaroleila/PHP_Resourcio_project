@@ -16,11 +16,11 @@
         body {
             height: 100vh;
             width: 100vw;
-            background-image: url('./assets/images/background.jpg')!important;
+            /* background-image: url('./assets/images/background.jpg')!important; */
         }
 
         .container {
-            height: 98%;
+            height: 90%;
             margin:auto;
         }
 
@@ -28,7 +28,7 @@
             color: #524bd7; 
         }
 
-        button {
+        .register {
             background-color: #524bd7!important;
         }
        
@@ -37,7 +37,7 @@
 </head>
 <body class="d-flex justify-content-center">
 <div class="container bg-white rounded p-4 shadow-lg col-lg-5 col-xl-4 col-md-6 col-sm-7 col-9">
-        <h3 class="fw-bold mb-3">Register Student</h3>
+        <h3 class="fw-bold mb-2">Register Student</h3>
     
         <form action=<?php echo base_url("register")?> method="POST" enctype='multipart/form-data' class="mt-auto">
             <div class="form-floating mb-3">
@@ -86,8 +86,9 @@
               <small class="text-danger"><?= form_error('password') ?></small>
             </div>
 
-          <button type="submit" class="btn text-light">Register</button>
-    
+          <button type="submit" class="btn text-light register">Register</button>
+          <a  class="btn btn-secondary text-light" href="<?= site_url('User/landing_page')?>">Back</a>
+          
           </form>
         </div>
     </div>

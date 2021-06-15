@@ -13,6 +13,11 @@
                 $this->notification_model->deleteAllNotitifactions($userId);
                 redirect(site_url('ResourceHandler/fetchResources/').$collectionId);
         }
+        function clearAllcollectionNotifications(){
+            $userId = $this->session->userdata('studentId');
+            $this->notification_model->deleteAllNotitifactions($userId);
+            redirect(site_url('collection'));
+    }
 
     }
 

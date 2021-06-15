@@ -83,7 +83,7 @@ class User extends CI_Controller {
             'password'=>hash('SHA512',$this->input->post('password')),
            );
             if($this->User_model->insertUser($data)){
-                $this->login_view();
+                $this->landing_page();
             }
         }
        
@@ -102,7 +102,7 @@ class User extends CI_Controller {
         $code = bin2hex(random_bytes(6));
         $message = "
         <h3 style='color: black; font-family: Segoe UI'>Follow the link below to change your password</h3>
-        <a style='color: white; background: dodgerblue; padding: 10px; width: 100px;' href='http://localhost/PHP_Resourcio_project/user/change_password_view/$code'>Click Here<a/></a>
+        <a style='color: white; background: dodgerblue; padding: 10px; width: 100px;' href='http://localhost/PHP_frameworks/codeigniter/projects/classProjects/resourcio/PHP_Resourcio_project/user/change_password_view/$code'>Click Here<a/></a>
         ";
         $config = array(
             'protocol' => 'smtp',
@@ -161,7 +161,8 @@ class User extends CI_Controller {
 
 public function logout(){
     $this->session->sess_destroy();
-    $this->login_view();
+    $this->landing_page();
+
  }
  
 public function disactivate(){
