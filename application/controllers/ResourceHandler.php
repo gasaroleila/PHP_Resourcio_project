@@ -10,8 +10,11 @@ class ResourceHandler extends CI_Controller {
     }
 
 	public function fetchResources($collectionId) {
+		$userId = $this->session->userdata('studentId');
 		$data['resources'] = $this->resource_model->fetch_all_resouces($collectionId);
 		$data['parentId'] = array('collectionId'=>$collectionId);
+		$data['notification']=$this->notification_model->get_notifications($userId);
+		// var_dump($data);
 		$this->load->view('resources',$data);
 		
 	}

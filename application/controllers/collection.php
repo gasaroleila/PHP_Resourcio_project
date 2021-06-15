@@ -2,7 +2,10 @@
 
 class Collection extends CI_Controller{
     public function index() {
+        $userId = $this->session->userdata('studentId');
+        // $this->load->view('collections',$data);
         $data['colls_data']=$this->collection_model->getCollections();
+        $data['notification']=$this->notification_model->get_notifications($userId);
         $this->load->view('collections',$data);
     }
 
@@ -27,13 +30,12 @@ class Collection extends CI_Controller{
             $this->collection_model->deleteCollection($id);
             redirect('collection');
     }
-    public function updateCollection(){
-        $id=$this->input->post('id');
-        $name=$this->input->post('col_name');
-        $this->collection_model->updateCollection($id,$name);
-        redirect('collection');
-        
 
+    public function updateCollection(){
+            $id=$this->input->post('id');
+            $name=$this->input->post('col_name');
+            $this->collection_model->updateCollection($id,$name);
+            redirect('collection');
     }
 
 

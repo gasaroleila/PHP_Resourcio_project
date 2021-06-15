@@ -2,7 +2,9 @@
   if(!$this->session->userdata('studentId')) {
       redirect('User/login');
   }
-?>
+  ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -98,7 +100,7 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav w-100 d-flex justify-content-around me-auto mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link fw-bold active" aria-current="page"  href="#">
+                        <a class="nav-link fw-bold active" aria-current="page"  href="./controller/index">
                         <i class="fas fa-home"></i>    Home
                         </a>
                     </li>
@@ -109,12 +111,15 @@
                                         data-bs-toggle="dropdown" aria-expanded="false" href="#">
                                     <i class="fas fa-bell"></i>    Notifications
                                 </a>
-
                                 <ul class="dropdown-menu notifications" aria-labelledby="dropdownMenuLink">
                                     <li class="fw-bold border-bottom pb-2 ps-2">Notifications</li>
-                                    <li class="border-bottom text-nowrap">PHP collection created successfully</li>
-                                    <li class="border-bottom text-nowrap">Resource added successfully</li>
-                                    <li class="text-center">Clear All</li>
+                                    <?php
+                                    foreach($notification as $notifyData){ ?>
+                                    <li class="border-bottom text-nowrap"><?= $notifyData->title ?></li>
+                                    <?php
+                                    }
+                                    ?>
+                                    <li class="text-center"><a href="./notification_controller/clearAll"> Clear All</a></li>
                                 </ul>
                             </div>
                     </li>
@@ -300,6 +305,10 @@
     </div>
   </div>
 </div>
+<<<<<<< HEAD
+
+=======
+>>>>>>> 396b22aa029fb2e667aab1fc18de3d83aa4a20af
     </div>
     </div>
 
