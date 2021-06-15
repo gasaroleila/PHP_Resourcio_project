@@ -1,3 +1,8 @@
+<?php
+  if(!$this->session->userdata('studentId')) {
+      redirect('User/login');
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
