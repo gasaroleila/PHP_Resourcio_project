@@ -1,3 +1,9 @@
+<?php
+  if($this->session->userdata('studentId')) {
+      redirect('User/login');
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,10 +48,15 @@
 <body class="d-flex justify-content-center">
     <div class="container bg-white rounded p-4 shadow-lg col-lg-5 col-xl-4 col-md-6 col-sm-7 col-9">
         <h3 class="fw-bold mb-3">Change Password</h3>
-        <form action=<?= site_url('User/change_password')?> method="post">
+        <form action=<?= site_url("User/change_password?random=$random")?> method="post">
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">New Password</label>
                 <input type="password" class="form-control" name="password" id="exampleFormControlInput1">
+                <small class="text-danger"><?php echo form_error('password') ?></small>
+                <label for="exampleFormControlInput1" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" name="confirm" id="exampleFormControlInput1">
+                <small class="text-danger"><?php echo form_error('confirm') ?></small>
+
             </div>
             <div class="mb-3">
                 <input type="email" name="email" class="form-control" hidden value=<?= $email ?> id="exampleFormControlInput1" >

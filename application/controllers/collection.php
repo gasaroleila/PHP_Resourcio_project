@@ -18,8 +18,10 @@ class Collection extends CI_Controller{
         $name=trim($this->input->post('col_name'));
 
         if($name !== '' && ctype_alnum($name)) {
+          $userId=$this->session->userdata('studentId');
           $data=[
-            'collectionName'=>$name
+            'collectionName'=>$name,
+            'creator'=>$userId
           ];
         $this->collection_model->saveCollection($data);
         }

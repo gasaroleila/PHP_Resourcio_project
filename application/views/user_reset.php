@@ -1,3 +1,8 @@
+<?php
+  if($this->session->userdata('studentId')) {
+      redirect('collection');
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +20,7 @@
                 <p class="card-text fw-bold">Enter your email to get a password recovery link.</p>
                 <form action=<?php  echo base_url("user/user_reset") ?> method="POST">
                     <input type="text" name="email" class="form-control mb-2" placeholder="Email">
+                    <small style="color:red;"><?php echo form_error('email') ?></small>
                     <a class="btn btn-secondary" href=<?php echo base_url("user/login_view") ?> >Back to login</a>
                     <input type="submit" class="btn btn-primary" value="Get link">
                 </form>

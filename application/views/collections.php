@@ -2,7 +2,7 @@
   if(!$this->session->userdata('studentId')) {
       redirect('User/login');
   }
-  ?>
+?>
 
 
 
@@ -27,7 +27,7 @@
         body {
             width: 100vw;
             height: 100vh;
-            overflow:hidden
+            overflow-x:hidden;
         }
         nav a{
             color:#524BD7;
@@ -213,15 +213,16 @@
         <hr>
         <div class="collection-group col-12 h-100 d-flex flex-wrap justify-content-left">
         <?php 
-            $i=1;
+            $class=1;
+            $modal=1;
             if(count($colls_data)==0){ ?>
                 <p class="fw-bold">You have no collections yet.</p>
             <?php }else{
             foreach ($colls_data as $coll_data) {
-                if($i>3)
-                    $i=1;
+                if($class>3)
+                    $class=1;
                 ?>
-                    <div class="collection collection-<?php echo $i?> h-25 rounded-2 mx-1">
+                    <div class="collection collection-<?php echo $class?> h-25 rounded-2 mx-1">
                       <?php
                         $coll_id = $coll_data->collectionId;
                          $this->db->select('*');
@@ -234,7 +235,7 @@
                             <path id="Icon_awesome-ellipsis-v" data-name="Icon awesome-ellipsis-v" d="M4.353,13.466a2.79,2.79,0,0,0,2.665-2.9,2.79,2.79,0,0,0-2.665-2.9,2.79,2.79,0,0,0-2.665,2.9A2.79,2.79,0,0,0,4.353,13.466ZM1.688,17.659a2.79,2.79,0,0,1,2.665-2.9,2.79,2.79,0,0,1,2.665,2.9,2.79,2.79,0,0,1-2.665,2.9A2.79,2.79,0,0,1,1.688,17.659Zm0-14.194A2.79,2.79,0,0,1,4.353.563a2.79,2.79,0,0,1,2.665,2.9,2.79,2.79,0,0,1-2.665,2.9A2.79,2.79,0,0,1,1.688,3.466Z" transform="translate(-1.688 -0.563)" fill="#fff"/>
                         </svg>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#staticBackdrop<?php echo $i?>" href="#">Rename</a></li>
+                            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#staticBackdrop<?php echo $modal?>" href="#">Rename</a></li>
                             <li>
                             <a class="dropdown-item" href="collection/deleteCollection?id=<?php echo $coll_data->collectionId?>">Delete</a>
                             </li>
@@ -249,7 +250,7 @@
                     <a href="<?= site_url('ResourceHandler/fetchResources/').$coll_data->collectionId?>" class="text-light float-end px-4 py-4">View All</a>
                 </div>
                 <!-- Update collection modal -->
-                <div class="modal fade" id="staticBackdrop<?php echo $i?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal fade" id="staticBackdrop<?php echo $modal?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                     <div class="modal-header">
@@ -273,7 +274,9 @@
                 </div>
                 </div>
         <?php 
-            $i++; }
+            $class++;
+            $modal++;    
+        }
                 }
         ?>
 
@@ -342,9 +345,6 @@
 </div>
     </div>
     </div>
-
-    <!-- <a href="<?=site_url('ResourceHandler/fetchResource/1')?>" data-bs-toggle="modal" data-bs-target="#triggerNewResource">Fetch Resource</a> -->
-
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
     <script>

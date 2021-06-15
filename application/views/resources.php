@@ -30,7 +30,7 @@
         body {
             width: 100vw;
             height: 100vh;
-            overflow:hidden
+            overflow-x:hidden
         }
         nav a, .header .fas{
             color:#524BD7;
@@ -164,7 +164,7 @@
                 </div>
             </div>
     </nav>
-    <div class="container col-9 shadow mt-5">
+    <div class="container col-9 shadow mt-5 pb-2">
         <div class="header d-flex justify-content-between">
              <?php
                 
