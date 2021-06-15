@@ -1,3 +1,9 @@
+<?php
+  if($this->session->userdata('studentId')) {
+      redirect('collection/');
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
