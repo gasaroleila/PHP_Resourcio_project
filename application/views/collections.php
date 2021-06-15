@@ -84,6 +84,11 @@ $userId = $this->session->userdata('studentId');
         .collection-4 {
             background-color: #524bd7
         }
+
+        .link {
+            margin-left: -33em;
+            margin-top: 20px
+        }
     </style>
 </head>
 <body>
@@ -133,24 +138,11 @@ $userId = $this->session->userdata('studentId');
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="" method="post">
+                                        <form action="<?=site_url('User/update_profile')?>" method="post">
                                             <div class="mb-3">
                                                 <label for="r_name" class="form-label">Names</label>
                                                 <input type="text" name="resource_name" id="r_name" class="form-control">
                                             </div>
-                                            <select class="form-select " aria-label="Default select example">
-                                                <option selected>District</option>
-                                                <option value="1">Rwanda</option>
-                                                <option value="2">Kenya</option>
-                                                <option value="3">Burundi</option>
-                                            </select>
-            
-                                            <select class="form-select mb-3 mt-3" aria-label="Default select example">
-                                                <option selected>Sector</option>
-                                                <option value="1">Manager</option>
-                                                <option value="2">Admin</option>
-                                                <option value="3">Instructor</option>
-                                            </select>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -175,9 +167,9 @@ $userId = $this->session->userdata('studentId');
         <div class="content col-11 mx-auto h-100">
         <div class="header d-flex justify-content-between">
             <h4 class="p-3"><span><svg xmlns="http://www.w3.org/2000/svg" width="35.5" height="20" viewBox="0 0 40.5 27">
-  <path id="Icon_awesome-folder-open" data-name="Icon awesome-folder-open" d="M40.268,20.538l-5.092,8.73A4.5,4.5,0,0,1,31.288,31.5H3.166a1.688,1.688,0,0,1-1.458-2.538L6.8,20.233A4.5,4.5,0,0,1,10.688,18H38.81a1.687,1.687,0,0,1,1.458,2.538ZM10.688,15.75H33.75V12.375A3.375,3.375,0,0,0,30.375,9H19.125l-4.5-4.5H3.375A3.375,3.375,0,0,0,0,7.875v19.55L4.857,19.1A6.773,6.773,0,0,1,10.688,15.75Z" transform="translate(0 -4.5)" fill="#524bd7"/>
-  </svg>
-  </span>Collections</h4>
+            <path id="Icon_awesome-folder-open" data-name="Icon awesome-folder-open" d="M40.268,20.538l-5.092,8.73A4.5,4.5,0,0,1,31.288,31.5H3.166a1.688,1.688,0,0,1-1.458-2.538L6.8,20.233A4.5,4.5,0,0,1,10.688,18H38.81a1.687,1.687,0,0,1,1.458,2.538ZM10.688,15.75H33.75V12.375A3.375,3.375,0,0,0,30.375,9H19.125l-4.5-4.5H3.375A3.375,3.375,0,0,0,0,7.875v19.55L4.857,19.1A6.773,6.773,0,0,1,10.688,15.75Z" transform="translate(0 -4.5)" fill="#524bd7"/>
+        </svg>
+    </span>Collections</h4><a href="<?= site_url('collection/view_all_resources')?>" class="link">View All Resources</a>
   <span class="p-4" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="27" viewBox="0 0 36 27">
     <path id="Icon_awesome-folder-plus" data-name="Icon awesome-folder-plus" d="M32.625,9h-13.5l-4.5-4.5H3.375A3.375,3.375,0,0,0,0,7.875v20.25A3.375,3.375,0,0,0,3.375,31.5h29.25A3.375,3.375,0,0,0,36,28.125V12.375A3.375,3.375,0,0,0,32.625,9Zm-6.75,11.813a1.125,1.125,0,0,1-1.125,1.125H19.688V27a1.125,1.125,0,0,1-1.125,1.125H17.438A1.125,1.125,0,0,1,16.313,27V21.938H11.25a1.125,1.125,0,0,1-1.125-1.125V19.688a1.125,1.125,0,0,1,1.125-1.125h5.063V13.5a1.125,1.125,0,0,1,1.125-1.125h1.125A1.125,1.125,0,0,1,19.688,13.5v5.063H24.75a1.125,1.125,0,0,1,1.125,1.125Z" transform="translate(0 -4.5)" fill="#524bd7"/>
     </svg>
@@ -197,7 +189,13 @@ $userId = $this->session->userdata('studentId');
                     $i=1;
                 ?>
                     <div class="collection collection-<?php echo $i?> h-25 rounded-2 mx-1">
-                        <h1 class="text-light px-2 fs-1">8<span class="float-end px-3">
+                      <?php
+                        $coll_id = $coll_data->collectionId;
+                         $this->db->select('*');
+                         $query = $this->db->get_where('resource', array('collectionId'=>$coll_id, 'status'=>'Active'));
+                         $count = $query->num_rows();
+                      ?>
+                        <h1 class="text-light px-2 fs-1"><?= $count ?><span class="float-end px-3">
                         <div class="dropdown">
                         <svg xmlns="http://www.w3.org/2000/svg" width="5.33" height="20" viewBox="0 0 5.33 20" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                             <path id="Icon_awesome-ellipsis-v" data-name="Icon awesome-ellipsis-v" d="M4.353,13.466a2.79,2.79,0,0,0,2.665-2.9,2.79,2.79,0,0,0-2.665-2.9,2.79,2.79,0,0,0-2.665,2.9A2.79,2.79,0,0,0,4.353,13.466ZM1.688,17.659a2.79,2.79,0,0,1,2.665-2.9,2.79,2.79,0,0,1,2.665,2.9,2.79,2.79,0,0,1-2.665,2.9A2.79,2.79,0,0,1,1.688,17.659Zm0-14.194A2.79,2.79,0,0,1,4.353.563a2.79,2.79,0,0,1,2.665,2.9,2.79,2.79,0,0,1-2.665,2.9A2.79,2.79,0,0,1,1.688,3.466Z" transform="translate(-1.688 -0.563)" fill="#fff"/>
@@ -245,7 +243,11 @@ $userId = $this->session->userdata('studentId');
             $i++; }
                 }
         ?>
+
         </div>
+
+     
+       
 
   <div class="modal fade" id="triggerNewResource" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="triggerNewResourceLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -290,7 +292,7 @@ $userId = $this->session->userdata('studentId');
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-          <form action=<?php echo base_url("collection/addCollection") ?> method="post">
+          <form action<?php echo base_url("collection/addCollection") ?> method="post">
              <div class="form-floating mb-3">
               <input type="text" name="col_name" class="form-control shadow-none" id="floatingInput" placeholder="collection Name" name="collectionName">
               <label for="floatingInput">Collection Name</label>
