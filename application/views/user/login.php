@@ -89,8 +89,9 @@
         'value'=>'Login'
         );
     ?>
-    <a href="<?= site_url('User/user_reset') ?>" class="d-block float-end">Forgot Password?</a>
+    <a href="<?= site_url('User/user_reset_view') ?>" class="d-block float-end">Forgot Password?</a>
     <?php echo form_submit($attr)?>
+    <a  class="btn btn-secondary text-light" href="<?= site_url('User/landing_page')?>">Back</a>
     
     <?php
     $err=$this->session->flashdata('inactive');

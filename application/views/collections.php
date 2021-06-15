@@ -121,7 +121,7 @@ $userId = $this->session->userdata('studentId');
                                     <?php
                                     }
                                     ?>
-                                    <li class="text-center"><a href="./notification_controller/clearAll"> Clear All</a></li>
+                                    <li class="text-center"><a href="<?= site_url('notification_controller/clearAllcollectionNotifications/')?>"> Clear All</a></li>
                                 </ul>
                             </div>
                     </li>
