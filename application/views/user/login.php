@@ -89,13 +89,6 @@
     <?php echo $this->session->flashdata('error');
      $this->session->unset_userdata('error');?> 
     <?php endif;?>
-    
-    <?php
-    $err=$this->session->flashdata('inactive');
-    if (isset($err)):?>
-    <?php echo $this->session->flashdata('inactive');
-    $this->session->unset_userdata('inactive');?> 
-    <?php endif;?>
     <?php echo form_close();?>
         </div>
     </div>

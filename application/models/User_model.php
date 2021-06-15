@@ -20,5 +20,32 @@ class User_model extends CI_model{
         $this->db->insert('student', $data);
         return true;
     }
+
+    public function getStudent(){
+        $id=$this->session->userdata('studentId');
+        $this->db->where('studentId',$id);
+        $result = $this->db->get('student');
+        return $result->result();
+    }
+
+    public function Update_user($data){
+        $id=$this->session->userdata('studentId');
+        $this->db->where('studentId',$id);
+        return $this->db->update('student',$data);
+    }
+
+    public function remove(){
+        $id=$this->session->userdata('studentId');
+        $array=array(
+            'status'=>'inactive'
+        );
+        $this->db->where('studentId',$id);
+        if( $this->db->update('student',$array)){
+          return  true;
+        }else{
+          return false;
+        }
+       
+    }
 }
 ?>

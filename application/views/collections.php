@@ -129,36 +129,54 @@ if(!$this->session->userdata('username')){
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="" method="post">
+                                        <form action=<?php echo base_url('update')?> onsubmit="validate()" method="POST">
                                             <div class="mb-3">
                                                 <label for="r_name" class="form-label">Names</label>
-                                                <input type="text" name="resource_name" id="r_name" class="form-control">
+                                                <input type="text" name="name" id="load" value="<?php echo $user[0]->studentNames?>"class="form-control" minLength="3" maxlength="30" required>
                                             </div>
-                                            <select class="form-select " aria-label="Default select example">
-                                                <option selected>District</option>
-                                                <option value="1">Rwanda</option>
-                                                <option value="2">Kenya</option>
-                                                <option value="3">Burundi</option>
+                                            <select onchange=getSector(this) class="form-select" name='district' aria-label="Default select example" required>
+                                                <option value="">Insert district</option>
+                                                <?php
+                                                    $id=$this->session->userdata('districtId');
+                                                    $prev='';
+                                                    foreach ($places as $place){
+                                                        if($prev != $place->districtName){
+                                                            if($place->districtId== $id){
+                                                                ?> 
+                                                            <option value=<?php echo $place->districtId ?> selected><?php echo $place->districtName ?></option>";
+                                                             <?php }?>
+                                                            <option value=<?php echo $place->districtId ?>> <?php echo $place->districtName ?> </option>";
+                                                            <?php }
+                                                        $prev=$place->districtName;
+                                                    }
+                                                    ?>
                                             </select>
             
-                                            <select class="form-select mb-3 mt-3" aria-label="Default select example">
-                                                <option selected>Sector</option>
-                                                <option value="1">Manager</option>
-                                                <option value="2">Admin</option>
-                                                <option value="3">Instructor</option>
+                                            <select class="form-select mb-3 mt-3 sectors" name="sector" aria-label="Default select example" required>
+                                                <option value=>Insert Sector</option>
+                                                <?php
+                                                    $idSect=$this->session->userdata('sectorId');
+                                                    foreach ($places as $place){
+                                                        if($place->sectorId==$idSect){    
+                                                        echo "<option style='display: none;' class='$place->districtId sectors-options' value=$place->sectorId selected> $place->sectorName </option>";
+                                                        }
+                                                        echo "<option style='display: none;' class='$place->districtId sectors-options' value=$place->sectorId > $place->sectorName </option>";
+                                                    }
+                                                ?>
                                             </select>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                        <!-- <span class="error text-danger"></span> -->
+                                        <a href="<?php echo site_url('User/disactivate');?>" class="btn bt-sm-8  btn-danger" >Delete account</a>
                                         <input type="submit" class="btn btn-primary" value="Save">
                                     </div>
-                                            </form>
+                                   </form>
                                     </div>
                                 </div>
                             </div>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link fw-bold" href="User/logout">
+                        <a class="nav-link fw-bold" href="<?=site_url('User/logout')?>">
                             <i class="fas fa-sign-out-alt"></i>Logout
                         </a>
                     </li>
@@ -308,6 +326,22 @@ if(!$this->session->userdata('username')){
 
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-
+    <script>
+      function getSector(id){
+        let selector = document.getElementsByClassName("sectors")[0];
+            selector.value="";
+          let allSectors = document.getElementsByClassName("sectors-options");
+        for(let a=0; a<allSectors.length; a++){
+              allSectors[a].style.display = "none";
+        }
+        let sectors = document.getElementsByClassName(id.value);
+        for(let i=0; i<sectors.length; i++){
+              sectors[i].style.display = "block";
+        }
+      }
+      function validate(){
+       alert("Update successfull")
+      }
+	</script>
     </body>
     </html>

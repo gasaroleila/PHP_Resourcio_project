@@ -3,6 +3,8 @@
 class Collection extends CI_Controller{
     public function index() {
         $data['colls_data']=$this->collection_model->getCollections();
+        $data["places"] = $this->User_model->registration();
+        $data['user']=$this->User_model->getStudent();
         $this->load->view('collections',$data);
     }
 
@@ -27,11 +29,22 @@ class Collection extends CI_Controller{
         $id=$this->input->post('id');
         $name=$this->input->post('col_name');
         $this->collection_model->updateCollection($id,$name);
-        redirect('collection');
-        
+        redirect('collection');  
 
     }
-
+    public function updateUser(){
+      $newname=$this->input->post('name');
+      $newdistrict=$this->input->post('district');
+      $newsector=$this->input->post('sector');
+      $data = array(
+        'studentNames' => $newname,
+        'districtId' => $newdistrict,
+        'sectorId' => $newsector,
+        );
+      if($this->User_model->Update_user($data)){;
+      $this->index();
+      }
+    }
 
 }
 
