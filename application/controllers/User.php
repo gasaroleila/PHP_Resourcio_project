@@ -49,6 +49,7 @@ class User extends CI_Controller {
                 );
                 $this->session->set_userdata($session_data);
                 //You  can access this session using this method $this->session->userdata('username');
+                
                 redirect(base_url().'collection'); 
             }else{
                 $error=array(

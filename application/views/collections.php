@@ -1,10 +1,7 @@
-<?php 
-
-if(!$this->session->userdata('username')){
-    site_url('user/');
-}
-
-
+<?php
+  if(!$this->session->userdata('studentId')) {
+      redirect('User/login');
+  }
 ?>
 
 <!DOCTYPE html>
@@ -150,7 +147,7 @@ if(!$this->session->userdata('username')){
                             </div>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link fw-bold" href="User/logout">
+                        <a class="nav-link fw-bold" href="<?= site_url('User/logout')?>">
                             <i class="fas fa-sign-out-alt"></i>Logout
                         </a>
                     </li>
