@@ -18,7 +18,8 @@ class Collection_model extends CI_Model{
 
     }
     public function getCollections(){
-        $query=$this->db->get('collection');
+        $userId=$this->session->userdata('studentId');
+        $query=$this->db->query("select * from collection where creator = $userId");
         return $query->result();
     }
     public function deleteCollection($id){
