@@ -84,13 +84,11 @@
         }
 
         .link {
-            margin-left: -33em;
+            margin-left: -32em;
             margin-top: 20px
         }
 
-        .container {
-            overflow-y: scroll;
-        }
+       
     </style>
 </head>
 <body>
@@ -215,6 +213,7 @@
         <?php 
             $class=1;
             $modal=1;
+            var_dump($coll_data);
             if(count($colls_data)==0){ ?>
                 <p class="fw-bold">You have no collections yet.</p>
             <?php }else{
