@@ -3,12 +3,16 @@
 class Collection extends CI_Controller{
     public function index() {
         $userId = $this->session->userdata('studentId');
-        // $this->load->view('collections',$data);
-        $data['colls_data']=$this->collection_model->getCollections();
-        $data["places"] = $this->User_model->registration();
-        $data['user']=$this->User_model->getStudent();
-        $data['notification']=$this->notification_model->get_notifications($userId);
-        $this->load->view('collections',$data);
+        if($userId){
+          $data['colls_data']=$this->collection_model->getCollections();
+          $data["places"] = $this->User_model->registration();
+          $data['user']=$this->User_model->getStudent();
+          $data['notification']=$this->notification_model->get_notifications($userId);
+          $this->load->view('collections',$data);
+        }else{
+          redirect('User/login');
+        }
+
     }
 
     public function addCollection(){
