@@ -38,7 +38,8 @@ class ResourceHandler extends CI_Controller {
 		   $resourceData = array('resourceName'=>$this->input->post('resourceName'),
 		                        'description'=> $this->input->post('resourceDescription'),
 								 'link'=>$this->input->post('resourceLink') ,
-								 'collectionId' => $collectionId
+								 'collectionId' => $collectionId,
+								 'creator'=>$this->session->userdata('studentId')
 								);
 
 		   $this->resource_model->add_resource($resourceData);

@@ -18,9 +18,9 @@ class Collection_model extends CI_Model{
 
     }
     public function getCollections(){
-        $this->db->select('*');
-        $data = $this->db->get_where('collection',array('creator'=>$this->session->userdata('studentId')))->result_array();
-        return $data;
+        $userId=$this->session->userdata('studentId');
+        $query=$this->db->query("select * from collection where creator = $userId");
+        return $query->result();
     }
 
     public function deleteCollection($id){
@@ -41,10 +41,16 @@ class Collection_model extends CI_Model{
             if($sql){
             $this->db->query("insert into notifications (title,studentId) values ('Succeeded updating', '$userId')");
             }
-        }
-        
-        
+        } 
 
+    }
+
+
+    public function viewAllResources() {
+        $id = $this->session->userdata('studentId');
+        $this->db->select('*');
+        $rows = $this->db->get_where('resource',array('status'=>'Active','creator'=>"$id"))->result_array();
+        return $rows;
     }
 }
 

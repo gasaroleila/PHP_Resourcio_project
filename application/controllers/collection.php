@@ -3,12 +3,16 @@
 class Collection extends CI_Controller{
     public function index() {
         $userId = $this->session->userdata('studentId');
-        // $this->load->view('collections',$data);
-        $data['colls_data']=$this->collection_model->getCollections();
-        $data["places"] = $this->User_model->registration();
-        $data['user']=$this->User_model->getStudent();
-        $data['notification']=$this->notification_model->get_notifications($userId);
-        $this->load->view('collections',$data);
+        if($userId){
+          $data['colls_data']=$this->collection_model->getCollections();
+          $data["places"] = $this->User_model->registration();
+          $data['user']=$this->User_model->getStudent();
+          $data['notification']=$this->notification_model->get_notifications($userId);
+          $this->load->view('collections',$data);
+        }else{
+          redirect('User/login');
+        }
+
     }
 
     public function addCollection(){
@@ -44,7 +48,7 @@ class Collection extends CI_Controller{
 
 
 public function view_all_resources() {
-$pdf = new FPDF();
+    $pdf = new FPDF();
             $pdf->AddPage('L');  
             $pdf->SetFont('Arial','U',12);
             $image = base_url('logo.png');
@@ -57,8 +61,8 @@ $pdf = new FPDF();
             $pdf->SetFont('Arial','',12);
             $header = array('Resource Names','Description');
 
-                $this->db->select('*');
-                $rows = $this->db->get_where('resource',array('status'=>'Active'))->result_array();
+                $rows = $this->collection_model->viewAllResources();
+               
                 $pdf->setLeftMargin(60);
                 if(count($rows)>0) {
                     $w = array(60, 120);
@@ -83,7 +87,9 @@ $pdf = new FPDF();
                 $pdf->Cell(array_sum($w),0,'','T');
 
                 }else {
-                echo "failed";
+                   $pdf->Ln();
+                   $pdf->setLeftMargin(0);  
+                   $pdf->Cell(10,7,'No resource found',0,0,'L');
                 }
                 $pdf->Output();
     }

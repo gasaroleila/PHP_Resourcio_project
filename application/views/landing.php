@@ -48,12 +48,30 @@
         .body .main{
             width: 70%;
         }
+
+        .col-md-4 {
+    flex: 0 0 auto;
+    width: 42.333333%;
+    margin-bottom: 20%
+}
         /* .svg{
             position: absolute;
             top: 20px;
             float:right;
             left:23em;
         } */
+
+
+        .land {
+            float: right;
+            margin-top: -16em;
+            margin-right: -15em;
+            width: 30em
+        }
+
+        .content {
+            margin-bottom: 8em;
+        }
     </style>
 </head>
 <body>
@@ -67,9 +85,10 @@
 <div class="main">
     <div class="container content">
         <h2 class="text-centre col-md-8 mb-5">With resourcio you can keep track of your resources without any difficulties.</h2>
-        <p class="text-start col-md-6">You can signup as a user(student) or instructor to start keeping and sharing your resources with friends, the best thing is that you will no longer worry about losing the links that you still need for future use.</p>
+        <p class="text-start col-md-6">You can signup as a user(student)  to start keeping and sharing your resources with friends, the best thing is that you will no longer worry about losing the links that you still need for future use.</p>
+        <img src="<?= base_url("assets/images/landing.png") ?>" alt="" class="land">
     </div>
-    <h3 class="col-md-2 text-center mt-5 text-success">Our Team</h3>
+    <h3 class="col-md-2 text-center mt-5 text-success team">Our Team</h3>
     <div class="members mx-4 mt-4 d-flex col-md-7">
         <div class="elt shadow-lg mx-2 col-md-4 border d-flex text-center">
             <div class="image mt-3" >

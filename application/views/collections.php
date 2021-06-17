@@ -213,7 +213,6 @@
         <?php 
             $class=1;
             $modal=1;
-            var_dump($coll_data);
             if(count($colls_data)==0){ ?>
                 <p class="fw-bold">You have no collections yet.</p>
             <?php }else{
@@ -238,7 +237,6 @@
                             <li>
                             <a class="dropdown-item" href="collection/deleteCollection?id=<?php echo $coll_data->collectionId?>">Delete</a>
                             </li>
-                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#triggerNewResource">New Resource</a></li>
                         </ul>
                             </div>      
                         </span>
@@ -281,42 +279,6 @@
 
         </div>
 
-     
-       
-
-  <div class="modal fade" id="triggerNewResource" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="triggerNewResourceLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="triggerNewResourceLabel">Resource Name</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-          <form action="<?= site_url('ResourceHandler/addResource')?>" method="post">
-           <div class="form-floating mb-3">
-              <input type="text" class="form-control shadow-none" id="floatingInput" placeholder="collection Name" name="resourceName">
-              <label for="floatingInput">Resource Name</label>
-            </div>
-
-            <div class="form-floating mb-3">
-            <textarea class="form-control shadow-none" placeholder="Leave a comment here" id="floatingTextarea" name="resourceDesc"></textarea>
-            <label for="floatingTextarea">Description</label>
-            </div>
-
-            <div class="form-floating mb-3">
-              <input type="text" class="form-control shadow-none" id="floatingInput" placeholder="collection Name" name="resourceLink">
-              <label for="floatingInput">Link</label>
-            </div>
-            
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-              <button type="submit" class="btn btn-primary">Save</button>
-            </div>
-            </form>
-      </div>
-    </div>
-    </div>
-    </div>
  
 <!-- New Collection form -->
  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
